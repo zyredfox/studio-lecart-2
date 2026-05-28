@@ -34,7 +34,7 @@ export const siteConfig = {
     "Bonjour — je peux vous orienter sur les services de {siteName}. Une question en tête ?",
   schemaDefaultDescription:
     "Julien Lecart, ingénieur & développeur à Grenoble — sites vitrine sur mesure, SEO de base, IA et chatbots utiles pour TPE et indépendants.",
-  ogImagePath: "/og.jpg",
+  ogImagePath: "/og.png",
 } as const;
 
 function envDisablesN8nChat(value: string | undefined): boolean {
