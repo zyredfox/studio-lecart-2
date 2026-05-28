@@ -1,0 +1,41 @@
+---
+description: Checklist Lighthouse (CWV + SEO)
+globs: src/**/*.{ts,tsx},public/**/*.{txt,xml,html,css}
+alwaysApply: false
+---
+
+# Objectif
+Valider rapidement les “preuves” performance/SEO avant réindexation et/ou nouveau déploiement.
+
+# Quand l’utiliser
+- Après avoir modifié SEO (head/meta/canonical/sitemap/robots) ou les perfs (images, scripts tiers, code-splitting).
+
+# Méthode (2 options)
+1) Via Chrome DevTools
+   - Ouvrir la page cible
+   - `Lighthouse` -> `Generate report`
+   - Faire un test en mode “mobile” + “2G/CPU throttling” si possible
+2) Via commande (local)
+   - Build + preview Astro : `npm run build && npm run preview`
+   - Puis Lighthouse sur l'URL preview (ex. port 4321) :
+     - `npx lighthouse http://localhost:4321 --output=html --output=json --quiet`
+
+# Seuils conseillés (à adapter à ton trafic)
+- Performance: >= 80
+- SEO: >= 80
+- CWV (Core Web Vitals):
+  - LCP: <= 2.5s
+  - INP: <= 200ms
+  - CLS: <= 0.1
+
+# Points à vérifier dans le rapport
+- Performance
+  - LCP: l’élément principal (souvent hero image) doit être chargé tôt (`fetchPriority="high"` / pas de background-image si critique)
+  - INP: éviter les scripts tiers trop tôt + limiter le travail au “main thread”
+  - CLS: tailles d’images/iframes définies (width/height, aspect-ratio) pour éviter les sauts
+- SEO
+  - `canonical` présent et cohérent avec `og:url` + JSON-LD
+  - `robots.txt` accessible à la racine + `sitemap.xml` accessible
+  - Pages publiques indexables, pages admin en `noindex,nofollow`
+- Réseau
+  - Scripts tiers: idéalement chargés après `requestIdleCallback` (ou au moins pas avant le contenu principal)

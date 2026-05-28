@@ -1,0 +1,15 @@
+---
+description: Tests auth/admin — Cas 2 apps dynamiques (Supabase), pas la vitrine SSG
+globs: src/**/*{admin,middleware,auth}*,src/middleware.ts
+alwaysApply: false
+---
+
+# Tests & permissions — apps dynamiques (Cas 2)
+
+Hors scope du **site vitrine Studio Lecart** (`output: 'static'`).
+
+Quand un projet Astro passe en `output: 'server'` + Supabase :
+
+- Toute logique admin : test d'intégration associé.
+- Middleware `src/middleware.ts` : vérifier session **côté serveur** avant rendu `/admin`.
+- Cas minimum : invité bloqué, non-admin bloqué, admin autorisé, action sensible sans auth refusée.

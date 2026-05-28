@@ -1,0 +1,13 @@
+---
+description: "[DÉPRÉCIÉ vitrine] Voir react-islands-only.mdc et astro-vitrine-cas1-geo.mdc"
+alwaysApply: false
+---
+
+# Déprécié — SPA React globale
+
+Cette règle s'appliquait au site **React/Vite SPA**. La refonte Studio Lecart utilise **Astro SSG** :
+
+- Pages publiques : **`astro-vitrine-cas1-geo.mdc`**
+- React résiduel : **`react-islands-only.mdc`** (`src/islands/**` uniquement)
+
+Ne pas réintroduire `src/hooks/*` + React Router pour les pages vitrine indexables.

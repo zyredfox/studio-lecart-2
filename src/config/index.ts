@@ -1,0 +1,10 @@
+export * from "@/config/site";
+export * from "@/config/navigation";
+export * from "@/config/packages";
+export * from "@/config/case-studies";
+export * from "@/config/home";
+export * from "@/config/services-page";
+export * from "@/config/forfaits-page";
+export * from "@/config/methode-page";
+export * from "@/config/a-propos-page";
+export type * from "@/config/types";

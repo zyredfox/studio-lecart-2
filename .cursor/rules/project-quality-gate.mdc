@@ -1,0 +1,17 @@
+---
+description: Quality gate before considering work done
+alwaysApply: true
+---
+
+# Project Quality Gate
+
+- Toute modification doit passer `npm run lint` et `npm run test` avant validation.
+- Si un check échoue, corriger la cause (pas de contournement ni désactivation opportuniste).
+- Ne pas laisser de dette visible après passage: pas d'erreur lint, pas de test cassé.
+- Quand une décision est reportée (phase 2, refactor ultérieur), documenter explicitement le périmètre restant.
+
+## Done Criteria
+
+- Le changement répond à la demande.
+- Les impacts de bord sont vérifiés.
+- Les checks automatiques sont verts.

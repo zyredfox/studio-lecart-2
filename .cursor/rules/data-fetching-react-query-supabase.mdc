@@ -1,0 +1,15 @@
+---
+description: React Query + Supabase — îles/apps dynamiques uniquement (Cas 2)
+globs: src/islands/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Data-fetch — îles interactives (Cas 2)
+
+Ne pas utiliser React Query sur les **pages `.astro` publiques** du site vitrine.
+
+- `useQuery` dans les hooks des îles `src/islands/**` uniquement.
+- Filtrer côté Supabase quand possible.
+- `queryKey` stable incluant les filtres.
+
+Pour le vitrine SSG : données au build via Content Layer ou fetch dans le frontmatter Astro (pas de fetch client sur pages indexées).

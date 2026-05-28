@@ -1,0 +1,79 @@
+---
+import { footerNavItems, siteConfig } from "@/config";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t border-teal-900/10 bg-slate-900 text-slate-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div>
+        <p class="font-display text-lg font-semibold text-white">
+          {siteConfig.siteName}
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-slate-300">
+          <strong class="font-medium text-white">Ancré à {siteConfig.founderCity}</strong>
+          — agence web solo au pied des Alpes. {siteConfig.founderFirstName},{" "}
+          {siteConfig.founderAge} ans : ingénieur, développeur et culture data pour des sites
+          vitrine, l'IA utile et l'automatisation au service des TPE et indépendants en Isère et en
+          France (présentiel ou à distance).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-teal-300">
+          Liens
+        </h2>
+        <ul class="mt-3 space-y-2 text-sm" role="list">
+          {
+            footerNavItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-slate-300 no-underline hover:text-white hover:no-underline"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-teal-300">
+          Contact
+        </h2>
+        <address class="mt-3 space-y-2 text-sm not-italic text-slate-300">
+          <p>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              class="text-slate-300 no-underline hover:text-white hover:no-underline"
+            >
+              {siteConfig.email}
+            </a>
+          </p>
+          <p>
+            <a
+              href={`tel:${siteConfig.phone}`}
+              class="text-slate-300 no-underline hover:text-white hover:no-underline"
+            >
+              {siteConfig.phoneDisplay}
+            </a>
+          </p>
+          <p>
+            {siteConfig.addressLine}
+            <br />
+            <span class="text-slate-400">
+              {siteConfig.founderCity}, {siteConfig.country}
+            </span>
+          </p>
+        </address>
+      </div>
+    </div>
+
+    <p class="mt-10 border-t border-slate-700 pt-6 text-center text-xs text-slate-500">
+      © {year} {siteConfig.siteName}. Tous droits réservés.
+    </p>
+  </div>
+</footer>

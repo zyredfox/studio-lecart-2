@@ -1,0 +1,30 @@
+---
+description: Conventions TypeScript et structure Astro (Studio Lecart vitrine)
+alwaysApply: true
+---
+
+# Structure Astro — Studio Lecart
+
+## Arborescence
+
+- `src/pages/*.astro` : routes (fichier = URL)
+- `src/layouts/*.astro` : Navbar, Footer, BaseLayout
+- `src/components/**/*.astro` : UI statique (défaut)
+- `src/components/seo/` : Seo.astro, SchemaOrg.astro
+- `src/content/**` : collections Markdown (Content Layer)
+- `src/config/site.ts` : siteConfig, helpers SEO
+- `src/lib/**` : helpers purs
+- `src/islands/**` : composants React/Vue **uniquement** si interactivité requise
+
+## Nommage
+
+- Composants Astro : PascalCase (`.astro`)
+- Fichiers utilitaires : kebab-case
+- Variables : camelCase ; constantes : `UPPER_SNAKE_CASE`
+- Alias `@/` → `src/`
+
+## TypeScript
+
+- `strict: true` ; pas de `any` ni `@ts-ignore`
+- `catch` : `error instanceof Error ? error.message : ...`
+- Configs : imports ESM

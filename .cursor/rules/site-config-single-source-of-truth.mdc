@@ -1,0 +1,32 @@
+---
+description: siteConfig source unique (Astro — variables PUBLIC_)
+globs: src/config/**/*
+alwaysApply: false
+---
+
+# Site config — source unique
+
+Toutes les données éditables du site dans **`src/config/site.ts`**.
+
+## Contenu siteConfig
+
+- `siteName`, `siteTagline`, `url` (canonical), `email`, `phone`
+- `themeColor` (aligné layout Astro)
+- `founderName`, `founderCity`, adresse structurée pour JSON-LD
+- Offres / forfaits : tableaux typés `readonly`
+
+## Helpers exports
+
+- `seoHomeDescription()`, `seoXxxDescription()` par type de page
+- `applySiteTokens(text)` : `{siteName}`, `{founderFirstName}`, etc.
+
+## Variables d'environnement (Astro)
+
+- Préfixe navigateur : **`PUBLIC_`** uniquement (ex. `PUBLIC_N8N_CHAT_ENABLED`).
+- Secrets : **sans** préfixe `PUBLIC_` — jamais exposés au client.
+- Feature flags : `isN8nChatEnabled()` lit `import.meta.env.PUBLIC_*` puis repli `siteConfig`.
+
+## Convention
+
+- `siteConfig as const` ; pas de logique métier dans ce fichier.
+- Consommé par `Seo.astro`, `SchemaOrg.astro` et les pages — jamais dupliqué dans les composants.

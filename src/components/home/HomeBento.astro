@@ -1,0 +1,45 @@
+---
+import { homeBento, homeBentoSection } from "@/config";
+---
+
+<section
+  class="py-14 sm:py-16"
+  aria-labelledby="home-bento-title"
+>
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <p class="text-xs font-semibold uppercase tracking-widest text-teal-700">
+      {homeBentoSection.kicker}
+    </p>
+    <h2
+      id="home-bento-title"
+      class="mt-2 font-display text-2xl font-bold text-slate-900 sm:text-3xl"
+    >
+      {homeBentoSection.title}
+    </h2>
+
+    <div
+      class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2"
+    >
+      {
+        homeBento.map((cell) => (
+          <article
+            class:list={[
+              "rounded-2xl border bg-white p-6 shadow-sm",
+              cell.wide && "sm:col-span-2 lg:col-span-2 lg:row-span-1",
+              cell.accent &&
+                "border-orange-200 bg-gradient-to-br from-orange-50/90 to-white",
+              !cell.wide && !cell.accent && "border-slate-200",
+            ]}
+          >
+            <h3 class="font-display text-lg font-semibold text-slate-900">
+              {cell.title}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-700">
+              {cell.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

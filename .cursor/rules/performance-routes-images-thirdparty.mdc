@@ -1,0 +1,27 @@
+---
+description: Performance Astro — images natives, îles légères, scripts tiers
+globs: src/**/*.{astro,ts,tsx}
+alwaysApply: false
+---
+
+# Performance — Astro vitrine
+
+## Images
+
+- `<Image />` depuis `astro:assets` (voir `astro-vitrine-cas1-geo.mdc`).
+- Dimensions explicites pour éviter le CLS.
+
+## Scripts tiers
+
+- Éviter les widgets tiers sur les pages indexées ; si indispensable, charger **après** le contenu principal (île `client:visible` ou snippet différé).
+- Pas de `useEffect` global dans une SPA : pas de bundle React sur les pages statiques.
+
+## « Routes »
+
+- Pas de `React.lazy` / code-splitting SPA : chaque `src/pages/*.astro` est une route HTML pré-rendue.
+- Lourdeur UI isolée dans `src/islands/**` avec hydratation minimale.
+
+## Polices
+
+- `preconnect` vers les domaines de polices dans le layout.
+- `font-display: swap` dans les URLs Google Fonts.

@@ -1,0 +1,14 @@
+---
+description: MCP Supabase — Cas 2 / projets avec backend uniquement (pas vitrine SSG)
+alwaysApply: false
+---
+
+# Supabase MCP (Cas 2 — apps dynamiques)
+
+**Hors scope** du site vitrine Studio Lecart (`output: 'static'`, Cas 1).
+
+Quand le projet utilise Supabase (`output: 'server'`, admin, réservations) :
+
+- Utiliser en priorité les outils MCP Supabase.
+- Vérifier via MCP avant de demander login CLI / dashboard manuel.
+- Tester les cas non autorisés avant les cas autorisés.

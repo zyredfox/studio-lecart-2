@@ -1,0 +1,32 @@
+---
+description: SEO par page Astro — head, canonical, JSON-LD via SchemaOrg
+globs: src/**/*.{astro,ts}
+alwaysApply: false
+---
+
+# SEO par page — pattern Astro
+
+## Layout & composant Seo
+
+- `src/layouts/BaseLayout.astro` : shell HTML (`lang="fr"`), polices, métadonnées globales.
+- `src/components/seo/Seo.astro` (ou props du layout) : head par page au **build** (pas de Helmet).
+
+Balises par page :
+- `<title>` unique : `PageTitle | SiteName`
+- `<meta name="description">`
+- `<meta name="robots" content="index, follow">` (public) / `noindex, nofollow` (admin)
+- `<link rel="canonical">` = `og:url` = `siteConfig.url` + pathname
+- Open Graph + `twitter:card` = `summary_large_image`
+- `og:image` absolu 1200×630 minimum
+
+## JSON-LD
+
+- **`SchemaOrg.astro`** : injecte `<script type="application/ld+json">` depuis `siteConfig`.
+- Minimum : `ProfessionalService` / `LocalBusiness` + `Person` fondateur + `PostalAddress`.
+- Par page : `FAQPage`, `BreadcrumbList`, etc. quand pertinent.
+- **Pas** de JSON-LD uniquement côté client — tout doit être dans le HTML servi.
+
+## Anti-patterns (SPA)
+
+- Pas de `react-helmet-async`, `HelmetProvider`, ni dépendance au pathname React Router.
+- Pas de note « envisager vite-plugin-ssg » : le site est **SSG natif Astro**.

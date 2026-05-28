@@ -1,0 +1,17 @@
+---
+description: Mobile accessibility baseline for interactive UI
+alwaysApply: true
+---
+
+# Mobile Accessibility Baseline
+
+- Cibles tactiles: viser au minimum `44x44` sur actions interactives critiques.
+- Focus clavier: utiliser `focus-visible` avec ring visible et cohérent.
+- Lisibilite mobile: `text-sm` par defaut, `text-xs` reserve aux metadonnees secondaires.
+- Boutons icone-only: ajouter un `aria-label` explicite.
+- Ne jamais exprimer un etat uniquement par la couleur.
+
+## Validation
+
+- Verifier les parcours principaux mobile: auth, navigation, reservation, profil.
+- Corriger avant merge tout controle difficile a toucher ou sans focus visible.

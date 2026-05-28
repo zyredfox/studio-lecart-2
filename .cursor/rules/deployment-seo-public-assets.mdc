@@ -1,0 +1,30 @@
+---
+description: robots.txt GEO 2026, sitemap Astro, assets publics (pas de fallback SPA)
+globs: public/**/*.{txt},astro.config.*
+alwaysApply: false
+---
+
+# SEO déploiement — Astro statique
+
+## Sitemap
+
+- Utiliser **`@astrojs/sitemap`** (génération au `npm run build`).
+- URL de référence prod : `https://studio-lecart.fr/sitemap-index.xml`
+- Ne pas maintenir `public/sitemap.xml` à la main.
+
+## robots.txt (GEO 2026)
+
+Fichier `public/robots.txt` : appliquer le bloc **intégral** défini dans `public-robots-txt-geo-2026.mdc`.
+
+Agents critiques pour citations en temps réel :
+- **OAI-SearchBot** (ChatGPT Search)
+- **PerplexityBot** (Perplexity)
+
+## Routage
+
+- **Interdit** pour ce site vitrine : `public/_redirects` avec `/* /index.html 200` (pattern SPA).
+- Redirections Netlify/Vercel : règles explicites 301/302 uniquement si besoin.
+
+## Cohérence URL
+
+- `siteConfig.url` = `https://studio-lecart.fr` (aligné robots, sitemap, canonical).

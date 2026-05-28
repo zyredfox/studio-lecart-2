@@ -1,0 +1,22 @@
+---
+description: React/Vue uniquement pour les îles interactives (hors pages publiques statiques)
+globs: src/islands/**/*.{tsx,jsx,vue}
+alwaysApply: false
+---
+
+# Îles interactives — React/Vue (dernier recours)
+
+S'applique **uniquement** aux composants dans `src/islands/**` (Cas 2 ou widgets isolés).
+
+## Avant d'ajouter une île — checklist
+
+- [ ] CSS natif insuffisant ?
+- [ ] `<script>` vanilla dans le `.astro` insuffisant ? (menu mobile, copier e-mail, toggles → **script natif**)
+- [ ] Seulement alors : île React/Vue
+
+## Règles îles
+
+- Extraire la logique dans des hooks ; UI présentationnelle (props in, rendu out).
+- Pas d'accès Supabase direct : props ou Astro Actions côté serveur.
+- Directive : **`client:visible`** par défaut ; `client:load` seulement si interaction immédiate au fold.
+- Justification écrite dans le PR/commit si une île est ajoutée sur une page indexée.

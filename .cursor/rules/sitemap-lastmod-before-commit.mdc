@@ -1,0 +1,12 @@
+---
+description: Sitemap — généré au build Astro (pas de lastmod manuel)
+alwaysApply: false
+---
+
+# Sitemap — Astro (@astrojs/sitemap)
+
+Ce projet vitrine **ne met pas à jour** `public/sitemap.xml` avant commit.
+
+- Le sitemap est produit au **`npm run build`** via `@astrojs/sitemap`.
+- Avant commit : vérifier que `astro.config` inclut l'intégration sitemap et que le build passe.
+- Si l'utilisateur maintient encore un ancien `public/sitemap.xml` legacy, le supprimer au profit de la génération Astro.

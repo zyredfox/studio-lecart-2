@@ -1,0 +1,71 @@
+---
+description: Studio Lecart — Astro SSG vitrine, SEO/GEO (Cas 1 context.md)
+alwaysApply: true
+---
+
+# Astro Vitrine — SSG pur & GEO
+
+Référence : `context.md` (Cas 1 : Site Vitrine). **Penser d'abord en HTML**, puis ajouter du dynamisme par petites touches.
+
+## Build & déploiement
+
+- `astro.config.mjs` : **`output: 'static'`** obligatoire (SSG pur). Pas de `server` ni `hybrid` pour ce site vitrine.
+- Stack : Astro + `@astrojs/tailwind` + Content Layer (Markdown/JSON) + déploiement Netlify/Vercel CDN.
+- Qualité : `npm run lint` et `npm run test` avant validation (`project-quality-gate`).
+
+## Zéro JS inutile (règle GEO)
+
+- Pages publiques indexables : **composants `.astro` uniquement** (HTML/CSS statique au build).
+- **Interdit** sur pages/composants publics : `client:load`, `client:idle`, `client:visible`, `client:media`, `client:only` — sauf **nécessité UX prouvée** documentée (ex. calendrier complexe, widget tiers irremplaçable).
+- Pas de React Router, pas de SPA fallback `/* /index.html 200`, pas de `react-helmet-async`.
+
+### Échelle d'interactivité (ordre obligatoire)
+
+1. **CSS pur** : `:target`, `:focus-within`, `<details>`/`<summary>`, checkbox hack.
+2. **`<script>` natif dans le `.astro`** : menu mobile, accordéons, « Copier l'e-mail », toggle thème — **sans** charger React/Vue. Le script Astro est bundlé léger, idéal pour viser **Lighthouse 100/100**.
+3. **Île React/Vue** (`client:*`) : **dernier recours** uniquement si le point 2 est insuffisant (état partagé lourd, lib tierce React-only).
+
+Exemples qui **ne doivent pas** être des îles : ouverture menu burger, copie presse-papiers, scroll spy simple, fermeture modale au clic extérieur.
+
+## Images (obligatoire)
+
+- Tous les visuels importés : **`import { Image } from 'astro:assets'`** + `<Image />` (WebP/AVIF, dimensions, lazy loading).
+- Hero LCP : `loading="eager"` + `fetchpriority="high"` si critique.
+- Interdit : `<img src="/public/...">` non optimisé, images > 500 Ko sources, `background-image` pour le hero LCP.
+
+## SEO technique
+
+- `@astrojs/sitemap` : sitemap généré au build (pas de `public/sitemap.xml` maintenu à la main).
+- `public/robots.txt` : contenu canonique **GEO 2026** — voir `public-robots-txt-geo-2026.mdc` (GPTBot, **OAI-SearchBot**, **PerplexityBot**, Google-Extended, Anthropic-ai, Applebot-Extended, Cohere-ai + `Sitemap: https://studio-lecart.fr/sitemap-index.xml`).
+- Chaque page : `title` et `meta description` **uniques** ; `canonical` = `og:url` = URL absolue du site.
+
+## JSON-LD (entité & local)
+
+- Composant dédié **`src/components/seo/SchemaOrg.astro`** (ou équivalent) injectant `<script type="application/ld+json">`.
+- Minimum site : `ProfessionalService` ou `LocalBusiness` (name, url, founder `Person`, `PostalAddress`).
+- Affiner `@type` par page : `FAQPage`, `BreadcrumbList`, `WebPage`, etc.
+- Données depuis `src/config/site.ts` (source unique) — jamais dupliquées dans les pages.
+
+## Contenu GEO — FAQ & sémantique
+
+- Section FAQ **factuelle** (« anti-hallucination ») : réponses courtes, vérifiables, sans marketing flou.
+- Titres de section en **forme de question** (ex. « Quels services propose Studio Lecart ? »).
+- HTML sémantique : un seul `<h1>` par page, hiérarchie `h2`→`h3` logique, `<main>`, `<article>`, `<section aria-labelledby="...">`.
+- Listes, tableaux et paragraphes autonomes : lisibles **hors contexte** par les LLM.
+
+## Structure projet Astro
+
+```
+src/pages/*.astro       # routes
+src/layouts/*.astro     # shell global
+src/components/**/*.astro
+src/content/**          # Markdown / collections
+src/config/site.ts      # siteConfig
+public/robots.txt
+```
+
+## Îles React (exception — dernier recours)
+
+- Réservées à `src/islands/**` ; **jamais** pour menu mobile, copie e-mail, ou micro-interactions résolues par CSS / `<script>` natif.
+- Directive la plus légère possible : préférer `client:visible` à `client:load`.
+- Voir `react-islands-only.mdc` — ne pas appliquer les patterns SPA globaux.

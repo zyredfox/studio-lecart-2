@@ -1,0 +1,81 @@
+---
+import "@/styles/global.css";
+import Footer from "@/components/navigation/Footer.astro";
+import SchemaOrg from "@/components/seo/SchemaOrg.astro";
+import type { FaqSchemaItem, SchemaOrgType } from "@/lib/schema-org";
+import { siteConfig, siteBaseUrl } from "@/config/site";
+
+interface Props {
+  /** Titre court de la page (sans le suffixe site) */
+  title: string;
+  description: string;
+  /** Chemin OG absolu ou relatif (défaut : siteConfig.ogImagePath) */
+  ogImage?: string;
+  robots?: "index, follow" | "noindex, nofollow";
+  schemaType?: SchemaOrgType;
+  faqItems?: readonly FaqSchemaItem[];
+}
+
+const {
+  title,
+  description,
+  ogImage = siteConfig.ogImagePath,
+  robots = "index, follow",
+  schemaType = "ProfessionalService",
+  faqItems,
+} = Astro.props;
+
+const fullTitle = `${title} | ${siteConfig.siteName}`;
+const canonicalUrl = new URL(Astro.url.pathname, `${siteBaseUrl()}/`).href;
+const ogImageUrl = ogImage.startsWith("http")
+  ? ogImage
+  : `${siteBaseUrl()}${ogImage.startsWith("/") ? ogImage : `/${ogImage}`}`;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={siteConfig.themeColor} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <SchemaOrg
+      type={schemaType}
+      pageUrl={canonicalUrl}
+      description={description}
+      faqItems={faqItems}
+    />
+  </head>
+  <body class="flex min-h-dvh flex-col antialiased">
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

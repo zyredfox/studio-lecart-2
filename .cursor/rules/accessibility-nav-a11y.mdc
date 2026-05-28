@@ -1,0 +1,33 @@
+---
+description: Accessibilite hamburger et navigation mobile
+alwaysApply: false
+---
+
+# Toggle button hamburger
+- type=button
+- aria-expanded sur le bouton
+- aria-controls
+- Texte sr-only Ouvrir Fermer
+- Barres visuelles aria-hidden
+
+# Role dialog mobile
+- role=dialog aria-modal aria-label
+- aria-hidden quand ferme
+- inert quand ferme
+- Fermeture backdrop et route change
+- Body overflow hidden quand ouvert
+
+# Navigation
+- Deux elements navigation avec aria-label distinct
+- Lien actif avec classe visuelle distincte
+- ScrollToTop au changement de route
+
+# SVG decoratifs
+- aria-hidden sur tout SVG decoratif
+
+# Formulaires
+- Chaque input lie a son label via htmlFor
+- Pas de placeholder comme seul label visible
+
+# Classe sr-only
+- .sl-sr-only pour les lecteurs ecran

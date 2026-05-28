@@ -1,0 +1,120 @@
+---
+import { siteConfig, siteBaseUrl } from "@/config/site";
+import type { FaqSchemaItem, SchemaOrgType } from "@/lib/schema-org";
+
+interface Props {
+  /** @type JSON-LD (défaut : agence) */
+  type?: SchemaOrgType;
+  /** URL canonique de la page courante */
+  pageUrl: string;
+  /** Surcharge la description (sinon schemaDefaultDescription) */
+  description?: string;
+  /** Pour FAQPage : paires question / réponse factuelles */
+  faqItems?: readonly FaqSchemaItem[];
+}
+
+const {
+  type = "ProfessionalService",
+  pageUrl,
+  description = siteConfig.schemaDefaultDescription,
+  faqItems,
+} = Astro.props;
+
+const organization = {
+  "@type": "ProfessionalService" as const,
+  "@id": `${siteBaseUrl()}/#organization`,
+  name: siteConfig.siteName,
+  description: siteConfig.schemaDefaultDescription,
+  url: siteBaseUrl(),
+  email: siteConfig.email,
+  telephone: siteConfig.phone,
+  founder: {
+    "@type": "Person",
+    name: siteConfig.founderName,
+    jobTitle: "Ingénieur & développeur web",
+    homeLocation: {
+      "@type": "Place",
+      name: siteConfig.founderCity,
+    },
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: siteConfig.addressLine,
+    addressLocality: siteConfig.founderCity,
+    addressCountry: siteConfig.country,
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "France",
+  },
+};
+
+function buildFaqPage() {
+  if (!faqItems?.length) return null;
+  return {
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+function buildSchema(): Record<string, unknown> {
+  const faqPage = buildFaqPage();
+  const orgNode = {
+    "@context": "https://schema.org",
+    ...organization,
+    "@type": type === "FAQPage" ? "ProfessionalService" : type,
+    description,
+    url: pageUrl === siteBaseUrl() ? siteBaseUrl() : pageUrl,
+  };
+
+  if (faqPage) {
+    return {
+      "@context": "https://schema.org",
+      "@graph": [orgNode, faqPage],
+    };
+  }
+
+  if (type === "WebPage") {
+    return {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: siteConfig.siteName,
+      description,
+      url: pageUrl,
+      isPartOf: { "@id": `${siteBaseUrl()}/#organization` },
+      about: { "@id": `${siteBaseUrl()}/#organization` },
+    };
+  }
+
+  if (type === "LocalBusiness") {
+    return {
+      "@context": "https://schema.org",
+      ...organization,
+      "@type": "LocalBusiness",
+      description,
+      url: pageUrl,
+    };
+  }
+
+  return {
+    "@context": "https://schema.org",
+    ...organization,
+    "@type": type,
+    description,
+    url: pageUrl === siteBaseUrl() ? siteBaseUrl() : pageUrl,
+  };
+}
+
+const schema = buildSchema();
+const jsonLd = JSON.stringify(schema);
+---
+
+<script is:inline type="application/ld+json" set:html={jsonLd} />

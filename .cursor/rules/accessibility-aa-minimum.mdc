@@ -1,0 +1,14 @@
+---
+description: Accessibility AA baseline for Sainte-Barbe UI
+globs: **/*
+alwaysApply: true
+---
+
+# Sainte-Barbe Accessibility Baseline
+
+- Keep mobile text readable: avoid `text-[9px]`/`text-[10px]`; prefer `text-xs` minimum and `text-sm` for body text.
+- Preserve contrast AA on all text and controls, including text over photos/gradients.
+- Keep keyboard focus visible on interactive elements (`focus-visible` ring/outline).
+- Ensure touch targets are comfortable on mobile (prefer min `44x44`).
+- Do not encode important state with color only; include icon/text labels.
+- Re-check accessibility when changing navigation, cards, widgets, or hero sections.

@@ -1,0 +1,194 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/navigation/Navbar.astro";
+import type { PackageTier } from "@/config/types";
+import {
+  getPackageById,
+  seoServicesDescription,
+  serviceDetailBlocks,
+  serviceOffers,
+  servicePillars,
+  siteConfig,
+} from "@/config";
+
+const serviceBlocksEnriched = serviceDetailBlocks.map((block) => ({
+  ...block,
+  primary: getPackageById(block.primaryForfaitId),
+  secondary: (block.secondaryForfaitIds ?? [])
+    .map((id) => getPackageById(id))
+    .filter((p): p is PackageTier => p !== undefined),
+}));
+---
+
+<Layout
+  title="Nos Services Web & Solutions IA"
+  description={seoServicesDescription()}
+  schemaType="WebPage"
+>
+  <Navbar />
+
+  <header class="border-b border-slate-200/80 bg-white/50 py-10 sm:py-12">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <h1 class="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        Services
+      </h1>
+      <p class="mt-3 text-base leading-relaxed text-slate-600">
+        Chaque bloc suit la même logique : ce qui coince, ce que je propose, ce que vous recevez en
+        fin de projet — et le <strong>forfait</strong> qui s'aligne le mieux avec les offres
+        détaillées sur la page <a href="/forfaits" class="font-medium text-teal-700 no-underline hover:underline">Forfaits</a>.
+      </p>
+    </div>
+  </header>
+
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-14">
+    <aside
+      class="mb-10 rounded-2xl border border-orange-200 bg-orange-50/80 p-5 text-sm leading-relaxed text-slate-800"
+      aria-label="Présentation"
+    >
+      Je suis <strong>{siteConfig.founderName}</strong> — je travaille depuis{" "}
+      <strong>{siteConfig.founderCity}</strong> avec un bagage{" "}
+      <strong>ingénieur + dev + data</strong>. Les trois leviers ci-dessous reprennent la même grille
+      que l'accueil pour que vous retrouviez vos repères.
+    </aside>
+
+    <section aria-labelledby="services-pillars-title" class="mb-14">
+      <h2
+        id="services-pillars-title"
+        class="font-display text-2xl font-bold text-slate-900"
+      >
+        Les trois leviers &amp; les forfaits
+      </h2>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-3" role="list">
+        {
+          servicePillars.map((pillar) => {
+            const primary = getPackageById(pillar.primaryForfaitId);
+            const offer = serviceOffers.find((o) => o.id === pillar.key);
+            return (
+              <li>
+                <article class="h-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <h3 class="font-display text-lg font-semibold text-slate-900">
+                    {pillar.title}
+                  </h3>
+                  <p class="mt-2 text-sm text-slate-600">{pillar.blurb}</p>
+                  {offer ? (
+                    <p class="mt-2 text-sm text-slate-600">{offer.description}</p>
+                  ) : null}
+                  {primary ? (
+                    <p class="mt-3 text-sm font-medium">
+                      <a
+                        href={`/forfaits#${primary.id}`}
+                        class="text-teal-700 no-underline hover:text-teal-900 hover:underline"
+                      >
+                        Forfait typique : {primary.name} ({primary.priceLabel})
+                      </a>
+                    </p>
+                  ) : null}
+                </article>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </section>
+
+    {
+      serviceBlocksEnriched.map((block) => (
+          <article
+            class="mb-12 border-b border-slate-200 pb-12 last:mb-0 last:border-b-0 last:pb-0"
+            aria-labelledby={`service-${block.id}`}
+          >
+            <h2
+              id={`service-${block.id}`}
+              class="font-display text-2xl font-bold text-slate-900"
+            >
+              {block.title}
+            </h2>
+            <h3 class="mt-4 text-sm font-semibold uppercase tracking-wide text-teal-800">
+              Le problème
+            </h3>
+            <p class="mt-2 text-base leading-relaxed text-slate-700">{block.problem}</p>
+            <h3 class="mt-4 text-sm font-semibold uppercase tracking-wide text-teal-800">
+              La solution
+            </h3>
+            <p class="mt-2 text-base leading-relaxed text-slate-700">{block.solution}</p>
+            {block.notIncluded ? (
+              <>
+                <h3 class="mt-4 text-sm font-semibold uppercase tracking-wide text-slate-600">
+                  Ce que je ne fais pas
+                </h3>
+                <p class="mt-2 text-base leading-relaxed text-slate-700">
+                  {block.notIncluded}
+                </p>
+              </>
+            ) : null}
+            <h3 class="mt-4 text-sm font-semibold uppercase tracking-wide text-teal-800">
+              Livrables
+            </h3>
+            <p class="mt-2 text-base leading-relaxed text-slate-700">
+              {block.deliverables}
+            </p>
+            {block.primary ? (
+              <p class="mt-4 rounded-xl bg-teal-50/80 px-4 py-3 text-sm text-slate-800">
+                <strong>Forfait le plus adapté :</strong>{" "}
+                <a
+                  href={`/forfaits#${block.primary.id}`}
+                  class="font-medium text-teal-800 no-underline hover:underline"
+                >
+                  {block.primary.name} — {block.primary.priceLabel}
+                </a>
+                {block.secondary.length > 0 ? (
+                  <span>
+                    {" "}
+                    (entrée de gamme possible :{" "}
+                    {block.secondary.map((p, i) => (
+                      <span>
+                        {i > 0 ? ", " : ""}
+                        <a
+                          href={`/forfaits#${p.id}`}
+                          class="font-medium text-teal-800 no-underline hover:underline"
+                        >
+                          {p.name} ({p.priceLabel})
+                        </a>
+                      </span>
+                    ))}
+                    )
+                  </span>
+                ) : null}
+                {" · "}
+                <a
+                  href="/forfaits"
+                  class="font-medium text-teal-800 no-underline hover:underline"
+                >
+                  Voir le comparatif
+                </a>
+              </p>
+            ) : null}
+          </article>
+      ))
+    }
+
+    <section class="mt-14 rounded-2xl border border-slate-200 bg-white p-6" aria-labelledby="evolutions-title">
+      <h2 id="evolutions-title" class="font-display text-xl font-bold text-slate-900">
+        Évolutions possibles
+      </h2>
+      <p class="mt-3 text-base leading-relaxed text-slate-700">
+        Pas de boutique en ligne pour l'instant ? Pas de souci. Votre vitrine peut évoluer plus tard :
+        réservations, paiements, espace membre — on en reparle quand votre activité l'exige.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href="/forfaits"
+          class="inline-flex min-h-11 items-center justify-center rounded-xl bg-teal-600 px-5 text-sm font-semibold text-white no-underline hover:bg-teal-700 hover:no-underline"
+        >
+          Voir les forfaits
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-800 no-underline hover:border-teal-400 hover:no-underline"
+        >
+          Parler de mon cas
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>

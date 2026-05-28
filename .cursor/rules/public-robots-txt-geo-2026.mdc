@@ -1,0 +1,43 @@
+---
+description: Contenu canonique public/robots.txt — crawlers IA GEO 2026 (Studio Lecart)
+globs: public/robots.txt
+alwaysApply: false
+---
+
+# robots.txt — GEO 2026 (Studio Lecart)
+
+Lors de la création ou mise à jour de `public/robots.txt`, **injecter exactement** ce contenu (adapter l'URL `Sitemap` si `siteConfig.url` change) :
+
+```txt
+User-agent: *
+Allow: /
+
+# Crawlers IA pour la recherche générative (GEO)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Anthropic-ai
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Cohere-ai
+Allow: /
+
+Sitemap: https://studio-lecart.fr/sitemap-index.xml
+```
+
+## Agents prioritaires (citations temps réel)
+
+- **OAI-SearchBot** : indexation pour **ChatGPT Search** (citations de sources).
+- **PerplexityBot** : indexation pour **Perplexity** (réponses avec liens sources).
+- Ne pas omettre ces deux agents — ils sont distincts de GPTBot.
+
+## Cohérence
+
+- `Sitemap:` doit correspondre à `siteConfig.url` + `/sitemap-index.xml` (sortie `@astrojs/sitemap`).
+- Pas de `Disallow: /` sur les user-agents IA listés ci-dessus.

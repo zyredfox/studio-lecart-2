@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "DM Sans", system-ui, sans-serif;
+  --color-sl-accent: #0d9488;
+  --color-sl-accent-hover: #0f766e;
+  --color-sl-warm: #ea580c;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-dvh font-sans text-slate-900 antialiased;
+    background-color: #e2e8f0;
+    background-image:
+      radial-gradient(ellipse 130% 75% at 100% -8%, rgb(254 215 170 / 0.52), transparent 52%),
+      radial-gradient(ellipse 100% 60% at -8% 25%, rgb(45 212 191 / 0.14), transparent 48%),
+      linear-gradient(168deg, #e8edf4 0%, #eef6f4 58%, #faf5f0 100%);
+    background-attachment: fixed;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    @apply outline-2 outline-offset-2 outline-teal-600;
+  }
+}

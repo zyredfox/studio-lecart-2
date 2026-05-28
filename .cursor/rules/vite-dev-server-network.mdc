@@ -1,0 +1,14 @@
+---
+description: "[Legacy] Vite SPA — remplacé par astro-dev-server-network.mdc pour Studio Lecart"
+alwaysApply: false
+---
+
+# Legacy — apps Vite React (autres dépôts)
+
+Pour **Studio Lecart (Astro)** : utiliser **`astro-dev-server-network.mdc`** (`server.host: true` dans `astro.config.mjs`).
+
+Cette règle ne s'applique qu'aux sous-projets Vite React encore présents ailleurs dans le monorepo :
+
+```ts
+server: { host: true, port: 5174 }
+```

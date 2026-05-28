@@ -1,0 +1,25 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/navigation/Navbar.astro";
+import Hero from "@/components/home/Hero.astro";
+import HomeStats from "@/components/home/HomeStats.astro";
+import HomeServices from "@/components/home/HomeServices.astro";
+import HomeBento from "@/components/home/HomeBento.astro";
+import IaBand from "@/components/home/IaBand.astro";
+import HomePackages from "@/components/home/HomePackages.astro";
+import HomeFaq from "@/components/home/HomeFaq.astro";
+import { buildHomeFaq, seoHomeDescription } from "@/config";
+
+const faqItems = buildHomeFaq();
+---
+
+<Layout title="Accueil" description={seoHomeDescription()} faqItems={faqItems}>
+  <Navbar />
+  <Hero />
+  <HomeStats />
+  <HomeServices />
+  <HomeBento />
+  <IaBand />
+  <HomePackages />
+  <HomeFaq />
+</Layout>
