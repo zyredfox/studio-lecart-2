@@ -1,5 +1,3 @@
-import { siteConfig } from "@/config/site";
-
 /** Valeurs et positionnement de l'agence (page À propos / entité founder). */
 export const agencyValues: readonly { title: string; description: string }[] = [
   {
@@ -8,14 +6,14 @@ export const agencyValues: readonly { title: string; description: string }[] = [
       "Explications en français simple, décisions documentées. Vous savez qui fait quoi et pourquoi.",
   },
   {
-    title: "Performance et SEO de base",
+    title: "Sites rapides et visibles",
     description:
-      "Sites légers, HTML sémantique, structure indexable — pas de promesses magiques, des fondations solides.",
+      "Des pages légères, faciles à trouver sur Google et conçues pour durer — pas de promesses magiques, des fondations solides.",
   },
   {
     title: "IA seulement si ça paie",
     description:
-      "Culture data : on mesure l'intérêt d'un chatbot ou d'une automation avant de l'ajouter à votre site.",
+      "Culture data : on mesure l'intérêt d'une automation avant de l'ajouter à votre site.",
   },
   {
     title: "Un interlocuteur unique",
@@ -24,4 +22,6 @@ export const agencyValues: readonly { title: string; description: string }[] = [
   },
 ] as const;
 
-export const aProposPageLead = `Ingénieur, développeur, avec une formation de data scientist — ${siteConfig.founderFirstName} crée des sites qui tiennent la route techniquement et qui restent humains à lire.`;
+/** Accroche hero : promesse client, sans répéter diplômes / métiers (détailés plus bas). */
+export const aProposPageLead =
+  "Des sites vitrines nets, rapides et faciles à faire évoluer — pour les indépendants et TPE qui veulent une présence pro sans devenir techniciens.";

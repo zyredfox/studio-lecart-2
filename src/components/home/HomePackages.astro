@@ -31,7 +31,7 @@ import SectionHeader from "@/components/ui/SectionHeader.astro";
               </span>
             ) : null}
             <h3 class="font-display text-xl font-semibold text-slate-900">{pkg.name}</h3>
-            <p class="mt-2 font-display text-2xl font-bold tracking-tight text-sl-accent">
+            <p class="mt-2 font-display text-2xl font-bold tracking-tight text-sl-accent-text">
               {pkg.priceLabel}
             </p>
             <p class="mt-2 text-sm text-slate-600">{pkg.tagline}</p>
@@ -41,7 +41,7 @@ import SectionHeader from "@/components/ui/SectionHeader.astro";
                 pkg.bullets.slice(0, 3).map((bullet) => (
                   <li class="flex gap-2.5">
                     <svg
-                      class="mt-0.5 h-5 w-5 shrink-0 text-sl-accent"
+                      class="mt-0.5 h-5 w-5 shrink-0 text-sl-accent-text"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"

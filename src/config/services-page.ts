@@ -15,38 +15,38 @@ export type ServiceDetailBlock = {
 export const serviceDetailBlocks: readonly ServiceDetailBlock[] = [
   {
     id: "vitrine",
-    title: "Sites vitrines haute performance",
+    title: "Sites Vitrines Haute Performance",
     problem:
-      "Vous devez être trouvé, expliquer votre activité et offrir un contact simple — sans site lent ou illisible sur mobile.",
+      "Vos clients doivent vous trouver et vous contacter facilement, sans subir un site lent ou illisible sur mobile.",
     solution:
-      "Pages structurées pour vos visiteurs, design cohérent, formulaire ou parcours clair ; performance (chargement rapide) et base SEO saine (titres, structure, pas de promesses magiques sur Google).",
+      "Un site rapide, léger et parfaitement structuré pour Google et les outils d'IA, sans abonnement technique obligatoire.",
     deliverables:
-      "Pages validées avec vous, hébergement / domaine selon options, courte prise en main pour vos textes ou images simples si vous le souhaitez.",
+      "Pages validées avec vous, hébergement / domaine selon options, courte prise en main pour mettre à jour vos textes ou images simples si vous le souhaitez.",
     primaryForfaitId: "pro",
     secondaryForfaitIds: ["essentiel"],
   },
   {
     id: "agents",
-    title: "IA, chatbots & automatisation",
+    title: "Réponses Automatiques & IA Utile",
     problem:
-      "Vous répondez souvent aux mêmes questions ou vous voulez orienter les visiteurs sans friction vers le bon formulaire.",
+      "Vous perdez trop de temps à répondre aux mêmes questions répétitives par e-mail ou au téléphone.",
     solution:
-      "Assistant conversationnel calibré sur vos textes et règles (horaires, zones, tarifs indicatifs…). FAQ, qualification de demande ou proposition de rendez-vous selon ce qu'on cadrera.",
+      "Un assistant intelligent sur votre site qui répond précisément à vos clients (horaires, tarifs, services) en se basant uniquement sur vos informations.",
     notIncluded:
-      "Remplacer tout un service client ni vendre une IA sans périmètre mesurable.",
+      "Remplacer tout un service client ni vendre une IA sans périmètre clair et mesurable.",
     deliverables:
       "Scénario validé, intégration au site, brief pour ajuster après les premiers retours.",
     primaryForfaitId: "sur-mesure",
   },
   {
     id: "data",
-    title: "Architecture de données",
+    title: "Connexion de vos Outils Métiers",
     problem:
-      "Vos outils (CRM, tableurs, formulaires) ne « parlent » pas entre eux : doublons, saisie manuelle, vision floue du client ou du dossier.",
+      "Vos formulaires, vos e-mails et vos logiciels clients ne communiquent pas entre eux, vous obligeant à tout recopier à la main.",
     solution:
-      "Schéma clair des flux, formats d'échange et intégrations ciblées pour que les données circulent proprement — sans usine à gaz invisible.",
+      "Je branche vos outils ensemble pour automatiser vos tâches administratives de façon simple et transparente.",
     deliverables:
-      "Cartographie courte, choix techniques expliqués, premier branchement ou POC selon faisabilité — puis feuille de route pour la suite.",
+      "Cartographie courte, choix expliqués en français clair, premier branchement selon faisabilité — puis feuille de route pour la suite.",
     primaryForfaitId: "sur-mesure",
   },
 ] as const;

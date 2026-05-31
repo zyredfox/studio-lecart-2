@@ -13,8 +13,8 @@ interface Props {
 
 const { study, thumbnail, priority = false, compact = false } = Astro.props;
 
-const imageWidths = [480, 640, 800, 960];
-const imageSizes = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, min(400px, 33vw)";
+const imageWidths = [400, 560, 720, 800];
+const imageSizes = "(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 380px";
 const portfolioHref = `/portfolio#${study.id}`;
 const resultLine = study.cardSummary;
 ---
@@ -51,7 +51,7 @@ const resultLine = study.cardSummary;
   </a>
 
   <div class:list={["flex flex-1 flex-col p-5 sm:p-6", compact && "py-4"]}>
-    <p class="text-xs font-semibold uppercase tracking-wide text-sl-accent">{study.sector}</p>
+    <p class="text-xs font-semibold uppercase tracking-wide text-sl-accent-text">{study.sector}</p>
     <h3 class="mt-1 font-display text-lg font-semibold text-slate-900">
       <a
         href={portfolioHref}
@@ -67,7 +67,7 @@ const resultLine = study.cardSummary;
         study.resultUrl ? (
           <a
             href={study.resultUrl}
-            class="inline-flex min-h-11 items-center text-sm font-semibold text-sl-accent no-underline hover:text-sl-accent-hover hover:no-underline"
+            class="inline-flex min-h-11 items-center text-sm font-semibold text-sl-accent-text no-underline hover:text-sl-accent-hover hover:no-underline"
             rel="noopener noreferrer"
             target="_blank"
           >

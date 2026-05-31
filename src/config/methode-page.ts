@@ -3,34 +3,32 @@ export type MethodeStep = {
   description: string;
 };
 
-/** Processus de travail Studio Lecart — ordre chronologique pour LLM / SEO. */
+/** Processus de travail Studio Lecart — ordre chronologique. */
 export const methodeSteps: readonly MethodeStep[] = [
   {
-    title: "Brief et objectifs",
-    description:
-      "On clarifie votre public, vos offres et ce que vous attendez du site : prises de contact, prise de rendez-vous, crédibilité, SEO local. On fixe le périmètre et les délais réalistes.",
+    title: "Échange et définition des besoins",
+    description: "On liste vos objectifs commerciaux.",
   },
   {
-    title: "Structure et contenus",
+    title: "Structure et textes",
     description:
-      "Arborescence des pages, textes et visuels : vous fournissez le fond, je propose la forme, la hiérarchie des titres et les priorités pour le référencement.",
+      "On organise vos contenus pour qu'ils soient clairs pour vos clients et les moteurs de recherche.",
   },
   {
-    title: "Maquette et validation",
-    description:
-      "Vous validez l'apparence et les parcours avant développement — pas de mauvaise surprise en fin de projet. Ajustements tant que le socle n'est pas validé.",
+    title: "Visualisation et validation",
+    description: "Vous validez l'apparence du site avant sa construction.",
   },
   {
-    title: "Développement et tests",
+    title: "Développement et finitions",
     description:
-      "Intégration en HTML sémantique, formulaires, responsive, performances de base (Core Web Vitals), vérifications accessibilité et SEO technique avant mise en ligne.",
+      "Je code votre site sur mesure, proprement, en testant sa rapidité.",
   },
   {
-    title: "Mise en ligne et passation",
+    title: "Mise en ligne et prise en main",
     description:
-      "Nom de domaine, hébergement (Netlify ou équivalent), formation courte pour les petites modifications. Option maintenance et évolutions ensuite si besoin.",
+      "Le site est publié, et je vous montre comment modifier vos textes en toute autonomie.",
   },
 ] as const;
 
 export const methodePageLead =
-  "Un déroulé transparent pour réduire le stress : vous savez où vous en êtes à chaque étape, du brief à la mise en production.";
+  "Un déroulé transparent pour réduire le stress : vous savez où vous en êtes à chaque étape, du premier échange à la mise en ligne.";

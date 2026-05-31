@@ -6,13 +6,9 @@ export const siteConfig = {
   /** Une ligne dans le pied de page (NAP + zone — pas de paragraphe dupliqué SEO). */
   footerTagline:
     "Sites vitrine & IA · Grenoble, Isère et France (sur place ou à distance)",
-  themeColor: "#0d9488",
+  themeColor: "#0f766e",
   url: "https://studio-lecart.fr",
   email: "contact@studio-lecart.fr",
-  phone: "+33600000000",
-  phoneDisplay: "06 00 00 00 00",
-  calendarUrl: "",
-  n8nChatWebhookUrl: "",
   country: "FR",
   founderName: "Julien Lecart",
   founderLastName: "Lecart",
@@ -22,40 +18,31 @@ export const siteConfig = {
   founderCredentials:
     "Diplômé d'ingénieur · Développeur · Formation data scientist",
   founderIntro:
-    "Je relie le développement web rigoureux et la culture data : des sites nets et maintenables, et des briques IA quand elles servent vraiment votre métier — pas pour la frime.",
-  addressLine: "Grenoble — adresse complète à compléter",
-  siret: "SIRET à compléter",
+    "J'aime le travail carré. Ma double compétence en développement et en analyse de données me permet de créer des sites transparents : vous reprenez le contrôle sur vos textes, et votre site est pensé pour durer, sans frais cachés.",
   trustSectors: ["Artisans", "Associations", "Indépendants", "TPE"] as const,
   heroPillsAfterCity: ["Ingénieur", "Dev", "Culture data"] as const,
   servicesIaSectionKicker: "Offres Studio",
-  placeholderTestimonialQuote:
-    "« On voulait un site honnête et lisible ; {founderFirstName} a tenu les délais et a su vulgariser sans nous prendre pour des idiots. »",
-  placeholderTestimonialFooter:
-    "— Exemple de formulation — à remplacer par un vrai client",
-  showcaseDemoChatTitle: "Assistant {siteName} (démo)",
-  n8nChatInitialGreeting:
-    "Bonjour — je peux vous orienter sur les services de {siteName}. Une question en tête ?",
   schemaDefaultDescription:
-    "Julien Lecart, ingénieur & développeur à Grenoble — sites vitrine sur mesure, SEO de base, IA et chatbots utiles pour TPE et indépendants.",
+    "Julien Lecart, ingénieur & développeur à Grenoble — sites vitrines rapides et fiables, visibles sur Google et les assistants d'IA, avec automatisation utile pour TPE, artisans et indépendants.",
   ogImagePath: "/og.png",
+
+  // ── PLACEHOLDERS — valeurs provisoires à remplacer avant déploiement ──
+  /** Numéro E.164 pour `tel:` et JSON-LD */
+  phone: "+33600000000",
+  /** Numéro affiché (footer, contact, à propos) */
+  phoneDisplay: "06 00 00 00 00",
+  /** URL prise de rendez-vous (vide = masquer le bouton sur /contact) */
+  calendarUrl: "",
+  /** Adresse postale (mentions légales, footer, schema.org) */
+  addressLine: "12 rue Example, 38000 Grenoble",
+  /** Numéro SIRET — 14 chiffres (mentions légales) */
+  siret: "123 456 789 00012",
+  /** Témoignage fictif — page d'accueil tant qu'aucun avis client n'est publié */
+  placeholderTestimonialQuote:
+    "« Projet livré dans les délais, avec un site clair et des explications accessibles. »",
+  placeholderTestimonialFooter: "— Client TPE, secteur artisanal",
+  // ── fin PLACEHOLDERS ──
 } as const;
-
-function envDisablesN8nChat(value: string | undefined): boolean {
-  if (value === undefined || value === "") return false;
-  const v = value.trim().toLowerCase();
-  return v === "0" || v === "false" || v === "off" || v === "no";
-}
-
-export function getN8nChatWebhookUrl(): string {
-  const fromEnv = import.meta.env.PUBLIC_N8N_CHAT_WEBHOOK_URL?.trim();
-  if (fromEnv) return fromEnv;
-  return String(siteConfig.n8nChatWebhookUrl ?? "").trim();
-}
-
-export function isN8nChatEnabled(): boolean {
-  if (envDisablesN8nChat(import.meta.env.PUBLIC_N8N_CHAT_ENABLED)) return false;
-  return getN8nChatWebhookUrl().length > 0;
-}
 
 export function applySiteTokens(text: string): string {
   return text
@@ -67,7 +54,7 @@ export function applySiteTokens(text: string): string {
 }
 
 export function seoHomeDescription(): string {
-  return `${siteConfig.siteName} à ${siteConfig.founderCity} : ${siteConfig.founderName}, ingénieur & développeur — sites vitrine sur mesure, SEO de base, IA et chatbots utiles.`;
+  return `${siteConfig.siteName} à ${siteConfig.founderCity} : ${siteConfig.founderName}, ingénieur & développeur — sites vitrine sur mesure, rapides et visibles sur Google, avec IA utile quand elle fait gagner du temps.`;
 }
 
 export function seoAProposDescription(): string {
@@ -79,7 +66,7 @@ export function seoContactDescription(): string {
 }
 
 export function seoServicesDescription(): string {
-  return `Sites vitrine sur mesure, SEO de base et solutions IA pour ${siteConfig.siteName} à ${siteConfig.founderCity}. Problème → solution → livrables clairs pour chaque offre.`;
+  return `Sites vitrine rapides, réponses automatiques et connexion d'outils métiers pour ${siteConfig.siteName} à ${siteConfig.founderCity}. Problème → solution → livrables clairs pour chaque offre.`;
 }
 
 export function seoForfaitsDescription(): string {
@@ -91,7 +78,7 @@ export function seoPortfolioDescription(): string {
 }
 
 export function seoMethodeDescription(): string {
-  return `Méthode de travail ${siteConfig.siteName} : brief, structure, maquette, développement SSG, mise en ligne et accompagnement. Processus transparent depuis ${siteConfig.founderCity}.`;
+  return `Méthode de travail ${siteConfig.siteName} : échange, structure, validation, développement sur mesure, mise en ligne et accompagnement. Processus transparent depuis ${siteConfig.founderCity}.`;
 }
 
 export function seoMentionsLegalesDescription(): string {

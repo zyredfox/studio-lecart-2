@@ -1,10 +1,20 @@
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+@import "@fontsource/dm-sans/700.css";
+@import "@fontsource/dm-sans/400-italic.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
 @import "tailwindcss";
 
 @theme {
   --font-sans: "DM Sans", system-ui, sans-serif;
   --font-display: "Space Grotesk", "DM Sans", system-ui, sans-serif;
-  --color-sl-accent: #0d9488;
-  --color-sl-accent-hover: #0f766e;
+  /* Contraste AA : boutons + texte accent sur fond clair */
+  --color-sl-accent: #0f766e;
+  --color-sl-accent-hover: #115e59;
+  --color-sl-accent-text: #115e59;
   --color-sl-warm: #ea580c;
   --radius-sl: 1rem;
   --radius-sl-lg: 1.25rem;
@@ -55,12 +65,18 @@
     box-shadow: var(--shadow-sl-card);
   }
 
+  /* Fond opaque : lisible sur sections bg-white / slate-50 / slate-100 */
   .sl-btn-secondary {
     @apply inline-flex min-h-11 items-center justify-center rounded-(--radius-sl) border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-800 no-underline transition-colors hover:border-sl-accent hover:text-sl-accent-hover hover:no-underline;
+    background-color: #fff;
   }
 
   .sl-kicker {
-    @apply text-xs font-semibold uppercase tracking-widest text-sl-accent;
+    @apply text-xs font-semibold uppercase tracking-widest text-sl-accent-text;
+  }
+
+  .sl-text-accent {
+    @apply text-sl-accent-text;
   }
 
   .browser-frame {

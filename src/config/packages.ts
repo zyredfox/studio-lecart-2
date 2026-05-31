@@ -34,11 +34,11 @@ export const packages: readonly PackageTier[] = [
     id: "sur-mesure",
     name: "Sur mesure & IA",
     priceLabel: "Sur devis",
-    tagline: "Automatisation, chatbot, intégrations.",
+    tagline: "Automatisation, intégrations, parcours sur mesure.",
     bullets: [
       "Parcours sur mesure (prise de rendez-vous, qualification…)",
-      "Chatbot / FAQ intelligente sur votre site",
-      "Agents ou workflows connectés à vos outils (selon faisabilité)",
+      "FAQ ou formulaires intelligents selon votre besoin",
+      "Connexion à vos outils métiers (selon faisabilité)",
       "Évolutions e-commerce ou réservations : on cadrera plus tard",
       "Maintenance & évolutions en option mensuelle",
     ],
@@ -49,25 +49,25 @@ export const packages: readonly PackageTier[] = [
 export const servicePillars = [
   {
     key: "vitrine",
-    title: "Sites vitrines haute performance",
+    title: "Sites Vitrines Haute Performance",
     blurb:
-      "Vitesse, Core Web Vitals, structure SEO et clarté pour vos visiteurs.",
+      "Un site rapide et clair pour être trouvé sur Google et mobile, sans abonnement technique obligatoire.",
     primaryForfaitId: "pro" as const,
     secondaryForfaitIds: ["essentiel"] as const,
   },
   {
     key: "agents",
-    title: "Automatisation & agents IA",
+    title: "Réponses Automatiques & IA Utile",
     blurb:
-      "LLM, chatbots et workflows reliés à vos outils, avec garde-fous.",
+      "Un assistant sur votre site qui répond aux questions fréquentes en s'appuyant sur vos informations.",
     primaryForfaitId: "sur-mesure" as const,
     secondaryForfaitIds: [] as const,
   },
   {
     key: "data",
-    title: "Architecture de données",
+    title: "Connexion de vos Outils Métiers",
     blurb:
-      "CRM, formulaires et systèmes qui communiquent sans silos opaques.",
+      "Vos formulaires, e-mails et logiciels connectés pour éviter la double saisie.",
     primaryForfaitId: "sur-mesure" as const,
     secondaryForfaitIds: [] as const,
   },

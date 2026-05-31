@@ -2,35 +2,36 @@ import type { FaqItem, ServiceOffer } from "@/config/types";
 import { siteConfig } from "@/config/site";
 
 export const heroContent = {
-  title: "Un site vivant et pro — sans la complexité inutile",
-  titleEmphasis: "vivant",
+  title:
+    "Des sites vitrines créés avec rigueur : ultra-rapides pour vos clients, prêts pour les nouveaux moteurs de recherche.",
+  titleEmphasis: "rigueur",
   leadSuffix:
-    "Vous gardez le contrôle sur le fond ; je m'occupe du cadre technique, des délais — et des idées IA seulement quand ça vous fait gagner du temps.",
+    "Pas de fioritures ni de systèmes lourds qui rament. Je m'occupe de concevoir un site rapide, fiable et structuré pour que les assistants d'IA (comme ChatGPT) et Google trouvent vos informations sans jamais se tromper.",
   founderVoice:
-    "J'aime les projets où on peut expliquer simplement ce qu'on fait — côté client comme côté code. Si votre site doit aussi accueillir un chatbot ou un petit agent, on le fait proprement, avec des règles claires.",
+    "J'aime le travail carré. Ma double compétence en développement et en analyse de données me permet de créer des sites transparents : vous reprenez le contrôle sur vos textes, et votre site est pensé pour durer, sans frais cachés.",
 } as const;
 
 export const serviceOffers: readonly ServiceOffer[] = [
   {
     id: "vitrine",
-    title: "Sites vitrines haute performance",
+    title: "Sites Vitrines Haute Performance",
     description:
-      "Pages légères, Core Web Vitals au vert et structure HTML sémantique : votre site charge vite, se positionne mieux et rassure Google comme vos visiteurs.",
+      "Un site rapide et clair pour que vos clients vous trouvent sur mobile, vous contactent facilement et que Google comprenne votre activité — sans abonnement technique obligatoire.",
     href: "/services",
   },
   {
     id: "agents",
-    title: "Automatisation & agents IA",
+    title: "Réponses Automatiques & IA Utile",
     description:
-      "GPT et modèles open source intégrés à votre stack : réponses clients, qualification de demandes, synthèse de tickets — avec garde-fous et traçabilité.",
+      "Un assistant sur votre site qui répond aux questions fréquentes (horaires, tarifs, services) en s'appuyant uniquement sur vos informations — moins de temps perdu au téléphone.",
     href: "/services",
     featured: true,
   },
   {
     id: "data",
-    title: "Architecture de données",
+    title: "Connexion de vos Outils Métiers",
     description:
-      "Schémas propres, pipelines clairs et interopérabilité : vos CRM, formulaires et outils métiers parlent la même langue, sans silos opaques.",
+      "Vos formulaires, e-mails et logiciels clients branchés ensemble pour éviter la double saisie et automatiser vos tâches administratives de façon simple.",
     href: "/contact",
   },
 ] as const;
@@ -43,23 +44,23 @@ export const homeWhySection = {
 export const homeWhySteps = [
   {
     step: "01",
-    title: "Un interlocuteur, du cadrage à la mise en ligne",
+    title: "Un interlocuteur direct, du début à la fin",
     description:
-      "Pas de file d'attente ni de « compte manager » fantôme : on décide ensemble des priorités, je code et documente, vous validez.",
+      "Pas de compte manager interposé ni de file d'attente : on fixe les priorités ensemble, je construis et livre — vous validez à chaque étape importante.",
     accent: false,
   },
   {
     step: "02",
-    title: "Livraisons visibles",
+    title: "Des livraisons claires et régulières",
     description:
-      "Prévisualisation régulière, explications en français clair — pas besoin d'être dev pour comprendre ce qui change.",
+      "Prévisualisations fréquentes et explications en français clair : vous savez exactement ce qui est en ligne, sans surprise en fin de projet.",
     accent: false,
   },
   {
     step: "03",
-    title: "IA seulement si ça paie",
+    title: "L'IA seulement si ça vous fait gagner du temps",
     description:
-      "Culture data : on mesure si un chatbot ou une automation vaut le coup avant de l'ajouter, pour éviter les gadgets.",
+      "Chaque automatisation est évaluée avant d'être ajoutée : pas de gadget inutile, seulement ce qui réduit concrètement votre charge de travail.",
     accent: true,
   },
 ] as const;
@@ -76,11 +77,11 @@ export const homePackagesSection = {
 } as const;
 
 export const iaBandContent = {
-  title: "IA utile — grâce au bagage data",
-  body: "La formation en data scientist m'a appris à poser les bonnes questions : qu'est-ce qu'on mesure, qu'est-ce qu'on automatise, et où garde-t-on l'humain ? Un chatbot ou un assistant sur votre site, c'est utile quand ça décharge les mêmes questions toute la journée — pas quand ça embrouille vos clients.",
+  title: "IA utile — quand elle vous fait gagner du temps",
+  body: "Mon expérience en analyse de données m'a appris à poser les bonnes questions : qu'est-ce qu'on automatise, et où garde-t-on l'humain ? L'IA sur un site, c'est utile quand ça libère du temps sur des tâches répétitives — pas quand ça embrouille vos clients.",
 } as const;
 
-/** FAQ factuelle GEO — titres en forme de question */
+/** FAQ factuelle — titres en forme de question */
 export function buildHomeFaq(): readonly FaqItem[] {
   const { siteName, founderName, founderCity, founderFirstName, email } = siteConfig;
   const essentielPrice = "à partir de 1 200 €";
@@ -89,7 +90,7 @@ export function buildHomeFaq(): readonly FaqItem[] {
   return [
     {
       question: `Qu'est-ce que ${siteName} ?`,
-      answer: `${siteName} est l'activité de ${founderName}, ingénieur et développeur web basé à ${founderCity}. Je conçois des sites vitrine sur mesure, avec SEO de base et des briques IA uniquement quand elles apportent un gain mesurable.`,
+      answer: `${siteName} est l'activité de ${founderName}, ingénieur et développeur web basé à ${founderCity}. Je conçois des sites vitrine sur mesure, rapides et faciles à retrouver sur Google, avec des outils d'IA uniquement quand ils vous font gagner du temps.`,
     },
     {
       question: `Où est basé ${siteName} et travaille-t-on à distance ?`,
@@ -98,7 +99,7 @@ export function buildHomeFaq(): readonly FaqItem[] {
     {
       question: "Quels services propose Studio Lecart ?",
       answer:
-        "Trois axes : sites vitrines performants (HTML sémantique, vitesse, SEO), automatisation et agents IA (chatbots, workflows), et architecture de données (CRM, formulaires, intégrations).",
+        "Trois axes : sites vitrines rapides et lisibles, réponses automatiques et IA utile sur votre site, et connexion de vos outils métiers pour éviter la double saisie.",
     },
     {
       question: "Quels sont les tarifs des forfaits vitrine ?",

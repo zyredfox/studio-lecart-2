@@ -13,7 +13,7 @@ export const forfaitComparisonRows = [
     surMesure: "Sur mesure selon objectifs",
   },
   {
-    theme: "Chatbot / IA",
+    theme: "IA & automatisation",
     essentiel: "Non inclus",
     pro: "Optionnel selon brief",
     surMesure: "Cœur de l'offre possible",
@@ -22,7 +22,7 @@ export const forfaitComparisonRows = [
     theme: "Intégrations",
     essentiel: "Formulaire, outils simples",
     pro: "Réseaux sociaux, outils tiers étendus",
-    surMesure: "CRM, workflows, agents avancés",
+    surMesure: "CRM, workflows, intégrations avancées",
   },
   {
     theme: "Prix indicatif",

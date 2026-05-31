@@ -12,13 +12,13 @@ interface Props {
 const { tone = "default", id, class: className = "", fullBleed = false } = Astro.props;
 
 const toneClasses: Record<SectionTone, string> = {
-  default: "",
-  muted: "bg-white/55 border-y border-slate-200/70",
-  inset: "bg-slate-50/80",
+  default: "bg-white border-b border-slate-200/60",
+  muted: "bg-slate-50 border-y border-slate-200/80",
+  inset: "bg-slate-100/90 border-b border-slate-200/60",
   dark: "",
 };
 
-const innerClass = fullBleed && tone === "dark" ? "" : "mx-auto max-w-6xl px-4 sm:px-6";
+const innerClass = fullBleed && tone === "dark" ? "" : "mx-auto max-w-7xl px-4 sm:px-6";
 ---
 
 <section

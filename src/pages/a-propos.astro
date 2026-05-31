@@ -1,13 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Navbar from "@/components/navigation/Navbar.astro";
-import {
-  agencyValues,
-  aProposPageLead,
-  founderInitials,
-  seoAProposDescription,
-  siteConfig,
-} from "@/config";
+import AProposContent from "@/components/a-propos/AProposContent.astro";
+import { seoAProposDescription } from "@/config";
 ---
 
 <Layout
@@ -16,107 +11,5 @@ import {
   schemaType="WebPage"
 >
   <Navbar />
-
-  <header class="border-b border-slate-200/80 bg-white/50 py-10 sm:py-12">
-    <div class="mx-auto max-w-2xl px-4 sm:px-6">
-      <h1 class="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-        {siteConfig.founderFirstName}, {siteConfig.founderAge} ans · {siteConfig.founderCity}
-      </h1>
-      <p class="mt-3 text-base leading-relaxed text-slate-600">
-        {aProposPageLead}
-      </p>
-    </div>
-  </header>
-
-  <article class="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-14">
-    <section aria-labelledby="profil-founder" class="flex gap-5 sm:gap-6">
-      <div
-        class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-600 to-teal-800 text-xl font-bold text-white"
-        aria-hidden="true"
-      >
-        {founderInitials()}
-      </div>
-      <div>
-        <h2 id="profil-founder" class="font-display text-xl font-bold text-slate-900">
-          {siteConfig.founderName} — fondateur de {siteConfig.siteName}
-        </h2>
-        <p class="mt-1 text-sm text-teal-800">{siteConfig.founderCredentials}</p>
-      </div>
-    </section>
-
-    <section class="prose prose-slate mt-8 max-w-none" aria-labelledby="parcours-title">
-      <h2 id="parcours-title" class="font-display text-xl font-bold text-slate-900">
-        Parcours : ingénieur &amp; développeur web
-      </h2>
-      <p class="mt-3 text-base leading-relaxed text-slate-700">
-        Je m'appelle <strong>{siteConfig.founderName}</strong>. Après un diplôme d'ingénieur, j'ai
-        approfondi le développement web et une formation orientée <strong>data science</strong> :
-        je sais livrer un site propre et réfléchir à des automatisations ou des assistants quand ils
-        ont un vrai retour sur investissement — pas parce que « il faut de l'IA ».
-      </p>
-      <p class="mt-4 text-base leading-relaxed text-slate-700">
-        Mon activité est <strong>ancrée à {siteConfig.founderCity}</strong> (Isère, Auvergne-Rhône-Alpes)
-        : accompagnement en présentiel dans la région grenobloise et projets <strong>100 % à distance</strong>
-        pour le reste de la France. J'accompagne des indépendants, artisans, associations et TPE qui
-        ont besoin d'une présence web claire sans devenir techniciens du jour au lendemain.
-      </p>
-      <p class="mt-4 text-base leading-relaxed text-slate-700">
-        <strong>{siteConfig.siteName}</strong> regroupe cette activité : sites vitrine sur mesure (souvent
-        en Astro SSG pour la performance et le SEO), bases de référencement, et lorsque vous êtes prêts —
-        chatbots, petits agents ou branchements sur vos outils. Fil conducteur : du concret, des délais
-        tenus, un langage qu'on comprend entre nous.
-      </p>
-      <blockquote class="mt-6 border-l-4 border-teal-500 bg-teal-50/60 px-4 py-3 text-base italic text-slate-800">
-        {siteConfig.founderIntro}
-      </blockquote>
-    </section>
-
-    <section class="mt-10" aria-labelledby="valeurs-title">
-      <h2 id="valeurs-title" class="font-display text-xl font-bold text-slate-900">
-        Valeurs de l'agence
-      </h2>
-      <ul class="mt-4 space-y-4" role="list">
-        {
-          agencyValues.map((value) => (
-            <li class="rounded-xl border border-slate-200 bg-white p-4">
-              <h3 class="font-semibold text-slate-900">{value.title}</h3>
-              <p class="mt-1 text-sm leading-relaxed text-slate-700">{value.description}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <section class="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-5" aria-labelledby="local-title">
-      <h2 id="local-title" class="font-display text-lg font-semibold text-slate-900">
-        Ancrage local — {siteConfig.founderCity}
-      </h2>
-      <p class="mt-2 text-sm leading-relaxed text-slate-700">
-        Studio Lecart est basé à <strong>{siteConfig.founderCity}</strong>, France. Coordonnées :
-        <a
-          href={`mailto:${siteConfig.email}`}
-          class="font-medium text-teal-700 no-underline hover:underline"
-        >
-          {siteConfig.email}
-        </a>
-        , téléphone <a href={`tel:${siteConfig.phone}`} class="font-medium text-teal-700 no-underline hover:underline">{siteConfig.phoneDisplay}</a>.
-        Adresse : {siteConfig.addressLine}.
-      </p>
-    </section>
-
-    <div class="mt-10 flex flex-wrap justify-center gap-3">
-      <a
-        href="/contact"
-        class="inline-flex min-h-11 items-center justify-center rounded-xl bg-teal-600 px-5 text-sm font-semibold text-white no-underline hover:bg-teal-700 hover:no-underline"
-      >
-        Prendre contact avec {siteConfig.founderFirstName}
-      </a>
-      <a
-        href="/portfolio"
-        class="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-800 no-underline hover:border-teal-400 hover:no-underline"
-      >
-        Voir le portfolio
-      </a>
-    </div>
-  </article>
+  <AProposContent />
 </Layout>

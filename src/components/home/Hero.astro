@@ -13,6 +13,16 @@ const featured =
   caseStudies.find((s) => s.id === heroFeaturedCaseStudyId) ?? caseStudies[0];
 const featuredThumb = getPortfolioThumbnail(featured.id);
 const otherStudies = caseStudies.filter((s) => s.id !== featured.id);
+
+const { title: heroTitle, titleEmphasis } = heroContent;
+const emphasisIndex = heroTitle.indexOf(titleEmphasis);
+const heroTitleHasEmphasis = emphasisIndex >= 0;
+const heroTitleBefore = heroTitleHasEmphasis
+  ? heroTitle.slice(0, emphasisIndex)
+  : "";
+const heroTitleAfter = heroTitleHasEmphasis
+  ? heroTitle.slice(emphasisIndex + titleEmphasis.length)
+  : "";
 ---
 
 <section
@@ -30,7 +40,7 @@ const otherStudies = caseStudies.filter((s) => s.id !== featured.id);
   >
   </div>
 
-  <div class="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+  <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
     <div>
       <p class="text-sm font-medium text-slate-600">
         <span class="text-slate-900">{siteConfig.founderCity}</span>
@@ -49,8 +59,17 @@ const otherStudies = caseStudies.filter((s) => s.id !== featured.id);
         id="hero-title"
         class="mt-4 font-display text-4xl font-bold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl"
       >
-        Un site <em class="text-sl-accent not-italic">{heroContent.titleEmphasis}</em> et pro —
-        sans la complexité inutile
+        {
+          heroTitleHasEmphasis ? (
+            <>
+              {heroTitleBefore}
+              <em class="text-sl-accent-text not-italic">{titleEmphasis}</em>
+              {heroTitleAfter}
+            </>
+          ) : (
+            heroTitle
+          )
+        }
       </h1>
 
       <p class="mt-5 max-w-xl text-base leading-relaxed text-slate-700">
@@ -91,8 +110,8 @@ const otherStudies = caseStudies.filter((s) => s.id !== featured.id);
           <Image
             src={featuredThumb}
             alt={`Capture du site ${featured.title}`}
-            widths={[640, 960, 1280]}
-            sizes="(max-width: 1024px) 100vw, min(560px, 48vw)"
+            widths={[480, 640, 800, 960]}
+            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 48vw, 520px"
             class="aspect-[16/10] w-full object-cover object-top"
             loading="eager"
             fetchpriority="high"
@@ -120,7 +139,7 @@ const otherStudies = caseStudies.filter((s) => s.id !== featured.id);
                   decoding="async"
                 />
                 <span class="flex min-h-11 min-w-0 flex-col justify-center py-1">
-                  <span class="text-xs font-semibold text-sl-accent">{study.sector}</span>
+                  <span class="text-xs font-semibold text-sl-accent-text">{study.sector}</span>
                   <span class="line-clamp-2 text-sm font-medium leading-snug text-slate-800 group-hover:text-sl-accent-hover">
                     {study.title.split("—")[0]?.trim() ?? study.title}
                   </span>
