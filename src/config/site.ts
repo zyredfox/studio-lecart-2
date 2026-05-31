@@ -26,15 +26,14 @@ export const siteConfig = {
     "Julien Lecart, ingénieur à Grenoble — création de sites vitrines professionnels ultra-rapides, robustes, sans frais cachés et prêts pour les évolutions de demain.",
   ogImagePath: "/og.png",
 
-  // ── PLACEHOLDERS — valeurs provisoires à remplacer avant déploiement ──
   /** Numéro E.164 pour `tel:` et JSON-LD */
-  phone: "+33600000000",
+  phone: "+33782768501",
   /** Numéro affiché (footer, contact, à propos) */
-  phoneDisplay: "06 00 00 00 00",
+  phoneDisplay: "07 82 76 85 00",
   /** URL prise de rendez-vous (vide = masquer le bouton sur /contact) */
   calendarUrl: "",
   /** Adresse postale (mentions légales, footer, schema.org) */
-  addressLine: "12 rue Example, 38000 Grenoble",
+  addressLine: "35 rue des arts et métiers, 38000 Grenoble",
   /** Numéro SIRET — 14 chiffres (mentions légales) */
   siret: "123 456 789 00012",
   /** Témoignage fictif — page d'accueil tant qu'aucun avis client n'est publié */
