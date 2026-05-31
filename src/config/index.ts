@@ -2,6 +2,7 @@ export * from "@/config/site";
 export * from "@/config/navigation";
 export * from "@/config/packages";
 export * from "@/config/case-studies";
+export * from "@/config/portfolio-images";
 export * from "@/config/home";
 export * from "@/config/services-page";
 export * from "@/config/forfaits-page";

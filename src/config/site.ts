@@ -3,6 +3,9 @@
 export const siteConfig = {
   siteName: "Studio Lecart",
   siteTagline: "Sites vitrine sur mesure & IA",
+  /** Une ligne dans le pied de page (NAP + zone — pas de paragraphe dupliqué SEO). */
+  footerTagline:
+    "Sites vitrine & IA · Grenoble, Isère et France (sur place ou à distance)",
   themeColor: "#0d9488",
   url: "https://studio-lecart.fr",
   email: "contact@studio-lecart.fr",
@@ -84,7 +87,7 @@ export function seoForfaitsDescription(): string {
 }
 
 export function seoPortfolioDescription(): string {
-  return `Portfolio ${siteConfig.siteName} : site pet sitter Tata Carotte, réservations familiales Domaine Sainte Barbe, galerie Atelier de Lisa. Études de cas avec stack, résultats et performances.`;
+  return `Portfolio ${siteConfig.siteName} : Tata Carotte, Domaine Sainte Barbe, Atelier de Lisa. Besoin client, livrables et bénéfices — sites en ligne consultables.`;
 }
 
 export function seoMethodeDescription(): string {

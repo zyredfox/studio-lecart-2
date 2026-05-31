@@ -18,6 +18,7 @@ export const packages: readonly PackageTier[] = [
   {
     id: "pro",
     name: "Pro",
+    featuredBadge: "Le plus demandé",
     priceLabel: "À partir de 2 500 €",
     tagline: "Plus de contenu, plus de visibilité.",
     bullets: [

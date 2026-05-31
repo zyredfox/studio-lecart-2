@@ -1,0 +1,42 @@
+---
+import { homeWhySection, homeWhySteps, siteConfig } from "@/config";
+import SectionShell from "@/components/ui/SectionShell.astro";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+---
+
+<SectionShell tone="default">
+  <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+    <SectionHeader
+      kicker={homeWhySection.kicker}
+      title={homeWhySection.title}
+      titleId="home-why-title"
+      lead={`${siteConfig.founderFirstName} à ${siteConfig.founderCity} : un seul interlocuteur technique, des livraisons visibles, et de l'IA uniquement quand elle sert votre métier.`}
+    />
+
+    <ol class="space-y-4" aria-labelledby="home-why-title">
+      {
+        homeWhySteps.map((item) => (
+          <li
+            class:list={[
+              "rounded-(--radius-sl-lg) border p-6 shadow-[var(--shadow-sl-card)]",
+              item.accent
+                ? "border-orange-200/90 bg-gradient-to-br from-orange-50/95 to-white"
+                : "border-slate-200/90 bg-white/95",
+            ]}
+          >
+            <span
+              class="font-display text-sm font-bold tracking-wider text-sl-accent"
+              aria-hidden="true"
+            >
+              {item.step}
+            </span>
+            <h3 class="mt-2 font-display text-lg font-semibold text-slate-900">
+              {item.title}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-700">{item.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</SectionShell>

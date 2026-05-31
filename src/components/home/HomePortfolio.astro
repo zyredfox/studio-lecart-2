@@ -1,0 +1,35 @@
+---
+import {
+  caseStudies,
+  getPortfolioThumbnail,
+  homePortfolioSection,
+} from "@/config";
+import SectionShell from "@/components/ui/SectionShell.astro";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
+import ProjectCard from "@/components/ui/ProjectCard.astro";
+---
+
+<SectionShell id="portfolio" tone="muted">
+  <SectionHeader
+    kicker={homePortfolioSection.kicker}
+    title={homePortfolioSection.title}
+    titleId="home-portfolio-title"
+    lead={homePortfolioSection.lead}
+  />
+
+  <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {
+      caseStudies.map((study, index) => (
+        <ProjectCard
+          study={study}
+          thumbnail={getPortfolioThumbnail(study.id)}
+          priority={index === 0}
+        />
+      ))
+    }
+  </div>
+
+  <p class="mt-10 text-center">
+    <a href="/portfolio" class="sl-btn-secondary"> Toutes les réalisations </a>
+  </p>
+</SectionShell>

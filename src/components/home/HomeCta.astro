@@ -1,0 +1,27 @@
+---
+import { homeCtaSection, siteConfig } from "@/config";
+import SectionShell from "@/components/ui/SectionShell.astro";
+
+const mailHref = `mailto:${siteConfig.email}`;
+---
+
+<SectionShell tone="muted">
+  <div
+    class="rounded-(--radius-sl-lg) border border-slate-200/90 bg-white/95 p-8 text-center shadow-[var(--shadow-sl-card)] sm:p-12"
+  >
+    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">
+      {homeCtaSection.title}
+    </h2>
+    <p class="mx-auto mt-3 max-w-xl text-base text-slate-600">
+      {homeCtaSection.lead}
+    </p>
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <a href="/contact" class="sl-btn-primary w-full sm:w-auto">
+        Discuter avec {siteConfig.founderFirstName}
+      </a>
+      <a href={mailHref} class="sl-btn-secondary w-full sm:w-auto">
+        {siteConfig.email}
+      </a>
+    </div>
+  </div>
+</SectionShell>

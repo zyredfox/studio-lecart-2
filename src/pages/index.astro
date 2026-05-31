@@ -2,11 +2,12 @@
 import Layout from "@/layouts/Layout.astro";
 import Navbar from "@/components/navigation/Navbar.astro";
 import Hero from "@/components/home/Hero.astro";
-import HomeStats from "@/components/home/HomeStats.astro";
+import HomePortfolio from "@/components/home/HomePortfolio.astro";
 import HomeServices from "@/components/home/HomeServices.astro";
-import HomeBento from "@/components/home/HomeBento.astro";
+import HomeWhy from "@/components/home/HomeWhy.astro";
 import IaBand from "@/components/home/IaBand.astro";
 import HomePackages from "@/components/home/HomePackages.astro";
+import HomeCta from "@/components/home/HomeCta.astro";
 import HomeFaq from "@/components/home/HomeFaq.astro";
 import { buildHomeFaq, seoHomeDescription } from "@/config";
 
@@ -16,10 +17,11 @@ const faqItems = buildHomeFaq();
 <Layout title="Accueil" description={seoHomeDescription()} faqItems={faqItems}>
   <Navbar />
   <Hero />
-  <HomeStats />
+  <HomePortfolio />
   <HomeServices />
-  <HomeBento />
+  <HomeWhy />
   <IaBand />
   <HomePackages />
+  <HomeCta />
   <HomeFaq />
 </Layout>

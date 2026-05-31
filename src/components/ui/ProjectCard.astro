@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { CaseStudy } from "@/config/types";
+
+interface Props {
+  study: CaseStudy;
+  thumbnail: ImageMetadata;
+  /** Image LCP hero — eager + fetchpriority */
+  priority?: boolean;
+  compact?: boolean;
+}
+
+const { study, thumbnail, priority = false, compact = false } = Astro.props;
+
+const imageWidths = [480, 640, 800, 960];
+const imageSizes = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, min(400px, 33vw)";
+const portfolioHref = `/portfolio#${study.id}`;
+const resultLine = study.cardSummary;
+---
+
+<article
+  class:list={[
+    "group flex flex-col overflow-hidden rounded-(--radius-sl-lg) border border-slate-200/90 bg-white shadow-[var(--shadow-sl-card)] transition-[box-shadow,transform] duration-300 hover:shadow-[var(--shadow-sl-elevated)] motion-safe:hover:-translate-y-0.5",
+    compact && "flex-row sm:flex-col",
+  ]}
+>
+  <a
+    href={portfolioHref}
+    class:list={[
+      "relative block overflow-hidden bg-slate-100 no-underline focus-visible:outline-sl-accent hover:no-underline",
+      compact ? "w-28 shrink-0 sm:w-full" : "aspect-[16/10]",
+    ]}
+  >
+    <Image
+      src={thumbnail}
+      alt={`Capture du site ${study.title}`}
+      widths={compact ? [112, 224] : imageWidths}
+      sizes={compact ? "112px" : imageSizes}
+      quality={80}
+      class:list={[
+        "h-full w-full object-cover object-top",
+        !compact &&
+          "motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-[1.02]",
+        compact ? "min-h-24 sm:min-h-0 sm:aspect-[16/10]" : "",
+      ]}
+      loading={priority ? "eager" : "lazy"}
+      fetchpriority={priority ? "high" : undefined}
+      decoding="async"
+    />
+  </a>
+
+  <div class:list={["flex flex-1 flex-col p-5 sm:p-6", compact && "py-4"]}>
+    <p class="text-xs font-semibold uppercase tracking-wide text-sl-accent">{study.sector}</p>
+    <h3 class="mt-1 font-display text-lg font-semibold text-slate-900">
+      <a
+        href={portfolioHref}
+        class="text-inherit no-underline hover:text-sl-accent-hover hover:no-underline"
+      >
+        {study.title}
+      </a>
+    </h3>
+    {!compact && <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{resultLine}</p>}
+
+    <div class="mt-4 flex flex-wrap gap-3">
+      {
+        study.resultUrl ? (
+          <a
+            href={study.resultUrl}
+            class="inline-flex min-h-11 items-center text-sm font-semibold text-sl-accent no-underline hover:text-sl-accent-hover hover:no-underline"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Voir le site <span aria-hidden="true">↗</span>
+          </a>
+        ) : null
+      }
+      <a
+        href={portfolioHref}
+        class="inline-flex min-h-11 items-center text-sm font-medium text-slate-600 no-underline hover:text-slate-900 hover:no-underline"
+      >
+        Étude de cas →
+      </a>
+    </div>
+  </div>
+</article>

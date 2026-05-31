@@ -1,0 +1,28 @@
+---
+interface Props {
+  class?: string;
+  /** flush = bord à bord dans la carte portfolio ; card = cadre avec ombre (hero) */
+  variant?: "card" | "flush";
+}
+
+const { class: className = "", variant = "card" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "browser-frame",
+    variant === "card" && "browser-frame--card",
+    variant === "flush" && "browser-frame--flush",
+    className,
+  ]}
+>
+  <div class="browser-frame__chrome" aria-hidden="true">
+    <span class="browser-frame__dot bg-red-400"></span>
+    <span class="browser-frame__dot bg-amber-400"></span>
+    <span class="browser-frame__dot bg-emerald-400"></span>
+    <span class="ml-2 h-2.5 flex-1 max-w-xs rounded-md bg-slate-200/90"></span>
+  </div>
+  <div class="relative bg-white">
+    <slot />
+  </div>
+</div>

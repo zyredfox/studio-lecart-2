@@ -1,6 +1,7 @@
 export type PackageTier = {
   id: string;
   name: string;
+  featuredBadge?: string;
   priceLabel: string;
   tagline: string;
   bullets: readonly string[];
@@ -9,20 +10,22 @@ export type PackageTier = {
 
 export type PackageId = "essentiel" | "pro" | "sur-mesure";
 
+export type CaseStudyId = "tata-carotte" | "sainte-barbe" | "atelier-lisa";
+
 export type CaseStudy = {
-  id: string;
+  id: CaseStudyId;
   title: string;
+  /** Courte ligne pour cartes accueil / hero */
+  cardSummary: string;
   /** Client ou projet commanditaire */
   client: string;
   sector: string;
-  /** Problème initial */
+  /** Situation / besoin du client */
   problem: string;
-  /** Solution technique apportée par Studio Lecart */
+  /** Ce qui a été livré (langage métier, pas stack) */
   solution: string;
-  /** Résultats factuels (performances, usage, ROI indicatif) */
-  results: readonly string[];
-  /** Stack technique principale */
-  stack: readonly string[];
+  /** Bénéfices concrets pour le client */
+  outcomes: readonly string[];
   /** URL du site en production (vide si non public) */
   resultUrl?: string;
 };

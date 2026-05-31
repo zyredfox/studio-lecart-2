@@ -1,0 +1,31 @@
+---
+export type SectionTone = "default" | "muted" | "inset" | "dark";
+
+interface Props {
+  tone?: SectionTone;
+  id?: string;
+  class?: string;
+  /** Pleine largeur sans max-w sur le fond */
+  fullBleed?: boolean;
+}
+
+const { tone = "default", id, class: className = "", fullBleed = false } = Astro.props;
+
+const toneClasses: Record<SectionTone, string> = {
+  default: "",
+  muted: "bg-white/55 border-y border-slate-200/70",
+  inset: "bg-slate-50/80",
+  dark: "",
+};
+
+const innerClass = fullBleed && tone === "dark" ? "" : "mx-auto max-w-6xl px-4 sm:px-6";
+---
+
+<section
+  id={id}
+  class:list={["py-16 sm:py-20", toneClasses[tone], className]}
+>
+  <div class={innerClass}>
+    <slot />
+  </div>
+</section>

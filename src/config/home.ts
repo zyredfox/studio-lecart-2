@@ -1,4 +1,4 @@
-import type { FaqItem, HomeBentoCell, HomeStat, ServiceOffer } from "@/config/types";
+import type { FaqItem, ServiceOffer } from "@/config/types";
 import { siteConfig } from "@/config/site";
 
 export const heroContent = {
@@ -9,24 +9,6 @@ export const heroContent = {
   founderVoice:
     "J'aime les projets où on peut expliquer simplement ce qu'on fait — côté client comme côté code. Si votre site doit aussi accueillir un chatbot ou un petit agent, on le fait proprement, avec des règles claires.",
 } as const;
-
-export const homeStats: readonly HomeStat[] = [
-  {
-    title: "Un interlocuteur",
-    description:
-      "Du cadrage à la mise en ligne, sans file d'attente ni « compte manager » fantôme.",
-  },
-  {
-    title: `${siteConfig.founderCity} & distance`,
-    description:
-      "Point régulier comme vous préférez : visio, message, ou café si vous êtes dans les cimes.",
-  },
-  {
-    title: "Sites tenables",
-    description:
-      "Vitesse, structure SEO de base, et un socle propre pour faire évoluer le site plus tard.",
-  },
-] as const;
 
 export const serviceOffers: readonly ServiceOffer[] = [
   {
@@ -53,9 +35,38 @@ export const serviceOffers: readonly ServiceOffer[] = [
   },
 ] as const;
 
-export const homeBentoSection = {
+export const homeWhySection = {
   kicker: "Comme une petite agence, sans la lourdeur",
   title: "Pourquoi travailler avec un solo technique ?",
+} as const;
+
+export const homeWhySteps = [
+  {
+    step: "01",
+    title: "Un interlocuteur, du cadrage à la mise en ligne",
+    description:
+      "Pas de file d'attente ni de « compte manager » fantôme : on décide ensemble des priorités, je code et documente, vous validez.",
+    accent: false,
+  },
+  {
+    step: "02",
+    title: "Livraisons visibles",
+    description:
+      "Prévisualisation régulière, explications en français clair — pas besoin d'être dev pour comprendre ce qui change.",
+    accent: false,
+  },
+  {
+    step: "03",
+    title: "IA seulement si ça paie",
+    description:
+      "Culture data : on mesure si un chatbot ou une automation vaut le coup avant de l'ajouter, pour éviter les gadgets.",
+    accent: true,
+  },
+] as const;
+
+export const homeCtaSection = {
+  title: "Un projet en tête ?",
+  lead: "Décrivez votre besoin en quelques lignes — je réponds en général sous 48 h ouvrées.",
 } as const;
 
 export const homePackagesSection = {
@@ -63,26 +74,6 @@ export const homePackagesSection = {
   lead:
     "Trois niveaux pour s'y retrouver — on ajuste après un vrai échange. Les prix sont des repères ; le devis final dépend de votre contenu et de vos délais.",
 } as const;
-
-export const homeBento: readonly HomeBentoCell[] = [
-  {
-    title: "Moins de couches, plus de clarté",
-    description:
-      "Pas d'équipe offshore ni de jargon pour cacher le vide : on décide ensemble des priorités, je code et documente, vous validez. Idéal si vous préférez savoir qui fait quoi et à quelle vitesse ça avance.",
-    wide: true,
-  },
-  {
-    title: "Livraisons visibles",
-    description:
-      "Prévisualisation régulière, explications en français clair — pas besoin d'être dev pour comprendre ce qui change.",
-  },
-  {
-    title: "IA seulement si ça paie",
-    description:
-      "Culture data : on mesure si un chatbot ou une automation vaut le coup avant de l'ajouter, pour éviter les gadgets.",
-    accent: true,
-  },
-] as const;
 
 export const iaBandContent = {
   title: "IA utile — grâce au bagage data",

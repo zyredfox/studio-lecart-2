@@ -1,0 +1,36 @@
+---
+interface Props {
+  kicker?: string;
+  title: string;
+  titleId?: string;
+  lead?: string;
+  align?: "start" | "center";
+  class?: string;
+}
+
+const {
+  kicker,
+  title,
+  titleId,
+  lead,
+  align = "start",
+  class: className = "",
+} = Astro.props;
+
+const alignClass = align === "center" ? "text-center mx-auto" : "";
+const leadClass = align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl";
+---
+
+<header class:list={[alignClass, className]}>
+  {kicker ? <p class="sl-kicker">{kicker}</p> : null}
+  <h2
+    id={titleId}
+    class:list={[
+      "mt-2 font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl",
+      align === "center" && "mx-auto",
+    ]}
+  >
+    {title}
+  </h2>
+  {lead ? <p class:list={["mt-3 text-base text-slate-600", leadClass]}>{lead}</p> : null}
+</header>

@@ -6,6 +6,10 @@
   --color-sl-accent: #0d9488;
   --color-sl-accent-hover: #0f766e;
   --color-sl-warm: #ea580c;
+  --radius-sl: 1rem;
+  --radius-sl-lg: 1.25rem;
+  --shadow-sl-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 8px 24px rgb(15 23 42 / 0.06);
+  --shadow-sl-elevated: 0 4px 6px rgb(15 23 42 / 0.05), 0 16px 40px rgb(13 148 136 / 0.12);
 }
 
 @layer base {
@@ -25,7 +29,112 @@
 
   a:focus-visible,
   button:focus-visible,
-  summary:focus-visible {
-    @apply outline-2 outline-offset-2 outline-teal-600;
+  summary:focus-visible,
+  label:focus-visible {
+    @apply outline-2 outline-offset-2 outline-sl-accent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .sl-shadow-card {
+    box-shadow: var(--shadow-sl-card);
+  }
+
+  .sl-shadow-elevated {
+    box-shadow: var(--shadow-sl-elevated);
+  }
+
+  .sl-btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-(--radius-sl) bg-sl-accent px-5 text-sm font-semibold text-white no-underline transition-colors hover:bg-sl-accent-hover hover:no-underline;
+    box-shadow: var(--shadow-sl-card);
+  }
+
+  .sl-btn-secondary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-(--radius-sl) border border-slate-300 bg-white px-5 text-sm font-semibold text-slate-800 no-underline transition-colors hover:border-sl-accent hover:text-sl-accent-hover hover:no-underline;
+  }
+
+  .sl-kicker {
+    @apply text-xs font-semibold uppercase tracking-widest text-sl-accent;
+  }
+
+  .browser-frame {
+    @apply overflow-hidden bg-white;
+  }
+
+  .browser-frame--card {
+    @apply rounded-(--radius-sl-lg) border border-slate-200/90;
+    box-shadow: var(--shadow-sl-elevated);
+  }
+
+  /* Portfolio : écran léger, sans fond coloré autour */
+  .browser-frame--flush {
+    @apply m-4 rounded-lg border border-slate-200/80 sm:m-5;
+    box-shadow:
+      0 0 0 1px rgb(15 23 42 / 0.04),
+      0 2px 8px rgb(15 23 42 / 0.05),
+      0 12px 28px rgb(15 23 42 / 0.06);
+  }
+
+  .browser-frame__chrome {
+    @apply flex items-center gap-2 border-b border-slate-100 bg-white px-4 py-3;
+  }
+
+  .browser-frame__dot {
+    @apply h-2.5 w-2.5 rounded-full;
+  }
+}
+
+/* Menu mobile — tiroir + overlay (checkbox, sans JS) */
+@layer components {
+  .nav-drawer-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.22s ease,
+      visibility 0.22s ease;
+  }
+
+  .nav-drawer {
+    transform: translateX(-100%);
+    pointer-events: none;
+    background-color: var(--color-stone-50);
+    transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .nav-drawer-toggle:checked ~ .nav-drawer-backdrop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-drawer-toggle:checked ~ .nav-drawer {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .nav-drawer-toggle:checked + header .nav-burger-open {
+    display: none;
+  }
+
+  .nav-drawer-toggle:checked + header .nav-burger-close {
+    display: flex;
+  }
+
+  body:has(.nav-drawer-toggle:checked) {
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-drawer-backdrop,
+  .nav-drawer {
+    display: none !important;
   }
 }
