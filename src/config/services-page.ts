@@ -15,11 +15,11 @@ export type ServiceDetailBlock = {
 export const serviceDetailBlocks: readonly ServiceDetailBlock[] = [
   {
     id: "vitrine",
-    title: "Sites Vitrines Haute Performance",
+    title: "Sites vitrines haute performance",
     problem:
       "Vos clients doivent vous trouver et vous contacter facilement, sans subir un site lent ou illisible sur mobile.",
     solution:
-      "Un site rapide, léger et parfaitement structuré pour Google et les outils d'IA, sans abonnement technique obligatoire.",
+      "Un site vitrine sur mesure, ultra-rapide et robuste : fondations techniques carrées, sans abonnement caché, structuré pour Google et prêt pour les évolutions de demain.",
     deliverables:
       "Pages validées avec vous, hébergement / domaine selon options, courte prise en main pour mettre à jour vos textes ou images simples si vous le souhaitez.",
     primaryForfaitId: "pro",
@@ -27,11 +27,11 @@ export const serviceDetailBlocks: readonly ServiceDetailBlock[] = [
   },
   {
     id: "agents",
-    title: "Réponses Automatiques & IA Utile",
+    title: "Options IA & Automatisation",
     problem:
       "Vous perdez trop de temps à répondre aux mêmes questions répétitives par e-mail ou au téléphone.",
     solution:
-      "Un assistant intelligent sur votre site qui répond précisément à vos clients (horaires, tarifs, services) en se basant uniquement sur vos informations.",
+      "Module optionnel, activable selon vos besoins une fois le site en ligne : assistant de réponses (horaires, tarifs, services) calé sur vos contenus, ou branchements simples vers vos outils — on cadre le périmètre avant toute mise en production.",
     notIncluded:
       "Remplacer tout un service client ni vendre une IA sans périmètre clair et mesurable.",
     deliverables:

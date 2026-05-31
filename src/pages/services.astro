@@ -28,7 +28,7 @@ const serviceBlocksEnriched = serviceDetailBlocks.map((block) => ({
   <Navbar />
 
   <header class="border-b border-slate-200/80 bg-white/50 py-10 sm:py-12">
-    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <h1 class="font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
         Services
       </h1>
@@ -40,7 +40,7 @@ const serviceBlocksEnriched = serviceDetailBlocks.map((block) => ({
     </div>
   </header>
 
-  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-14">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14">
     <aside
       class="mb-10 rounded-2xl border border-orange-200 bg-orange-50/80 p-5 text-sm leading-relaxed text-slate-800"
       aria-label="Présentation"
@@ -91,6 +91,7 @@ const serviceBlocksEnriched = serviceDetailBlocks.map((block) => ({
       </ul>
     </section>
 
+    <div class="mx-auto max-w-5xl">
     {
       serviceBlocksEnriched.map((block) => (
           <article
@@ -190,5 +191,6 @@ const serviceBlocksEnriched = serviceDetailBlocks.map((block) => ({
         </a>
       </div>
     </section>
+    </div>
   </div>
 </Layout>

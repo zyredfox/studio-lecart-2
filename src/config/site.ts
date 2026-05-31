@@ -2,7 +2,7 @@
 
 export const siteConfig = {
   siteName: "Studio Lecart",
-  siteTagline: "Sites vitrine sur mesure & IA",
+  siteTagline: "Sites vitrine haute performance & évolutions IA",
   /** Une ligne dans le pied de page (NAP + zone — pas de paragraphe dupliqué SEO). */
   footerTagline:
     "Sites vitrine & IA · Grenoble, Isère et France (sur place ou à distance)",
@@ -23,7 +23,7 @@ export const siteConfig = {
   heroPillsAfterCity: ["Ingénieur", "Dev", "Culture data"] as const,
   servicesIaSectionKicker: "Offres Studio",
   schemaDefaultDescription:
-    "Julien Lecart, ingénieur & développeur à Grenoble — sites vitrines rapides et fiables, visibles sur Google et les assistants d'IA, avec automatisation utile pour TPE, artisans et indépendants.",
+    "Julien Lecart, ingénieur à Grenoble — création de sites vitrines professionnels ultra-rapides, robustes, sans frais cachés et prêts pour les évolutions de demain.",
   ogImagePath: "/og.png",
 
   // ── PLACEHOLDERS — valeurs provisoires à remplacer avant déploiement ──

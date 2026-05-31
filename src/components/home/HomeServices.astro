@@ -1,51 +1,111 @@
 ---
-import { serviceOffers, siteConfig } from "@/config";
+import { homeServicesSection, homeVitrineFeatured, serviceOffers } from "@/config";
 import SectionShell from "@/components/ui/SectionShell.astro";
 import SectionHeader from "@/components/ui/SectionHeader.astro";
 import ServiceIcon from "@/components/icons/ServiceIcon.astro";
 import type { ServiceIconId } from "@/components/icons/ServiceIcon.astro";
 
-const featured = serviceOffers.find((o) => o.featured) ?? serviceOffers[1];
-const others = serviceOffers.filter((o) => o.id !== featured.id);
+const vitrineOffer = serviceOffers.find((o) => o.id === "vitrine");
+const secondaryOffers = serviceOffers.filter((o) => o.id !== "vitrine");
+
+if (!vitrineOffer) {
+  throw new Error("serviceOffers doit contenir une offre id=vitrine");
+}
 ---
 
 <SectionShell tone="inset">
   <SectionHeader
-    kicker={siteConfig.servicesIaSectionKicker}
-    title="Services IA & web"
-    titleId="services-ia-title"
-    lead="Du site public à l'agent interne : trois leviers pour moderniser votre présence et vos processus, sans pile techno inutile."
+    kicker={homeServicesSection.kicker}
+    title={homeServicesSection.title}
+    titleId="home-services-title"
+    lead={homeServicesSection.lead}
     align="center"
   />
 
-  <div class="mt-12 grid gap-6 lg:grid-cols-12 lg:gap-5">
+  <div class="mt-12 grid gap-6 lg:grid-cols-12 lg:items-start lg:gap-5">
     <article
-      class="flex flex-col rounded-(--radius-sl-lg) border-2 border-sl-accent/40 bg-white p-7 shadow-[var(--shadow-sl-elevated)] lg:col-span-7"
+      class="rounded-(--radius-sl-lg) border-2 border-sl-accent/40 bg-white p-6 shadow-[var(--shadow-sl-elevated)] sm:p-7 lg:col-span-7"
+      aria-labelledby="home-service-vitrine-title"
     >
-      <ServiceIcon id={featured.id as ServiceIconId} />
-      <h3 class="mt-4 font-display text-xl font-semibold text-slate-900">{featured.title}</h3>
-      <p class="mt-3 flex-1 text-base leading-relaxed text-slate-600">
-        {featured.description}
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <ServiceIcon id="vitrine" />
+        <span class="rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-sl-accent-text ring-1 ring-teal-200/80">
+          {homeVitrineFeatured.badge}
+        </span>
+      </div>
+
+      <h3 id="home-service-vitrine-title" class="mt-4 font-display text-xl font-semibold text-slate-900 sm:text-2xl">
+        {vitrineOffer.title}
+      </h3>
+      <p class="mt-3 text-base leading-relaxed text-slate-600">
+        {vitrineOffer.description}
       </p>
-      <a
-        href={featured.href}
-        class="mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-sl-accent-text no-underline hover:text-sl-accent-hover hover:no-underline"
-      >
-        En savoir plus <span aria-hidden="true">→</span>
-      </a>
+
+      <p class="mt-4 rounded-xl border border-teal-100 bg-teal-50/70 px-4 py-3 text-sm leading-relaxed text-slate-800">
+        {homeVitrineFeatured.outcome}
+      </p>
+
+      <ul class="mt-5 grid gap-3 sm:grid-cols-2" role="list">
+        {
+          homeVitrineFeatured.highlights.map((item) => (
+            <li class="flex gap-2.5 text-sm leading-snug">
+              <span
+                class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sl-accent text-xs font-bold text-white"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
+              <span>
+                <strong class="font-medium text-slate-900">{item.title}</strong>
+                <span class="text-slate-600"> — {item.detail}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-5 border-t border-slate-100 pt-5">
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Livrables typiques
+        </p>
+        <ul class="mt-2 grid gap-1.5 sm:grid-cols-2" role="list">
+          {
+            homeVitrineFeatured.deliverables.map((line) => (
+              <li class="flex gap-2 text-sm text-slate-700">
+                <span class="text-sl-accent-text" aria-hidden="true">·</span>
+                {line}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-4 text-sm font-medium text-slate-800">{homeVitrineFeatured.priceHint}</p>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="/forfaits" class="sl-btn-primary">
+          {homeVitrineFeatured.ctaForfaits}
+        </a>
+        <a href="/contact" class="sl-btn-secondary">
+          {homeVitrineFeatured.ctaContact}
+        </a>
+      </div>
     </article>
 
     <div class="flex flex-col gap-5 lg:col-span-5">
       {
-        others.map((offer) => (
-          <article class="flex flex-1 flex-col rounded-(--radius-sl-lg) border border-slate-200/90 bg-white p-6 shadow-[var(--shadow-sl-card)] transition hover:shadow-[var(--shadow-sl-elevated)]">
+        secondaryOffers.map((offer) => (
+          <article
+            class="rounded-(--radius-sl-lg) border border-slate-200/90 bg-white p-6 shadow-[var(--shadow-sl-card)] transition hover:shadow-[var(--shadow-sl-elevated)]"
+            aria-labelledby={`home-service-${offer.id}-title`}
+          >
             <ServiceIcon id={offer.id as ServiceIconId} class="h-7 w-7 text-sl-accent-text" />
-            <h3 class="mt-3 font-display text-lg font-semibold text-slate-900">
+            <h3
+              id={`home-service-${offer.id}-title`}
+              class="mt-3 font-display text-lg font-semibold text-slate-900"
+            >
               {offer.title}
             </h3>
-            <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
-              {offer.description}
-            </p>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{offer.description}</p>
             <a
               href={offer.href}
               class="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-sl-accent-text no-underline hover:text-sl-accent-hover hover:no-underline"

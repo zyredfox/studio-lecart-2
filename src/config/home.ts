@@ -14,18 +14,18 @@ export const heroContent = {
 export const serviceOffers: readonly ServiceOffer[] = [
   {
     id: "vitrine",
-    title: "Sites Vitrines Haute Performance",
+    title: "Sites vitrines haute performance",
     description:
-      "Un site rapide et clair pour que vos clients vous trouvent sur mobile, vous contactent facilement et que Google comprenne votre activité — sans abonnement technique obligatoire.",
+      "Un site vitrine sur mesure, fluide sur mobile et pensé pour durer. Pas de systèmes lourds qui rament, pas d'abonnements cachés : des fondations techniques carrées pour rassurer vos clients et Google.",
     href: "/services",
+    featured: true,
   },
   {
     id: "agents",
-    title: "Réponses Automatiques & IA Utile",
+    title: "Options IA & Automatisation",
     description:
-      "Un assistant sur votre site qui répond aux questions fréquentes (horaires, tarifs, services) en s'appuyant uniquement sur vos informations — moins de temps perdu au téléphone.",
+      "Une fois votre site en ligne, gagnez du temps : intégration d'un assistant de réponses automatiques basé sur vos tarifs ou connexion de vos formulaires à vos outils du quotidien.",
     href: "/services",
-    featured: true,
   },
   {
     id: "data",
@@ -35,6 +35,47 @@ export const serviceOffers: readonly ServiceOffer[] = [
     href: "/contact",
   },
 ] as const;
+
+export const homeServicesSection = {
+  kicker: "Services",
+  title: "Votre site vitrine, puis les évolutions",
+  lead:
+    "Le cœur de métier : un site professionnel ultra-rapide et robuste. L'IA et l'automatisation viennent ensuite, uniquement si elles vous font gagner du temps.",
+} as const;
+
+/** Contenu enrichi de la carte vitrine (accueil) — rassurer le prospect. */
+export const homeVitrineFeatured = {
+  badge: "Cœur de métier",
+  outcome:
+    "Objectif : qu'un visiteur comprenne votre activité en quelques secondes, vous contacte facilement, et que votre site reste rapide dans le temps — sans surprise sur la facture.",
+  highlights: [
+    {
+      title: "Pensé mobile d'abord",
+      detail: "Navigation fluide sur téléphone, là où vos clients vous cherchent.",
+    },
+    {
+      title: "Fondations SEO & clarté",
+      detail: "Structure lisible pour Google et les moteurs de recherche IA.",
+    },
+    {
+      title: "Sans abonnement piège",
+      detail: "Site que vous possédez ; pas de CMS lourd imposé chaque mois.",
+    },
+    {
+      title: "Un seul interlocuteur",
+      detail: "Brief, maquette, développement et mise en ligne avec la même personne.",
+    },
+  ],
+  deliverables: [
+    "Pages sur mesure (accueil, services, contact…)",
+    "Formulaire de contact fiable",
+    "Mise en ligne + prise en main pour vos textes",
+    "Performance et accessibilité soignées dès la livraison",
+  ],
+  priceHint: "Repère tarif : à partir de 1 200 € (forfait Essentiel)",
+  ctaForfaits: "Comparer les forfaits",
+  ctaContact: "Décrire mon projet",
+} as const;
 
 export const homeWhySection = {
   kicker: "Comme une petite agence, sans la lourdeur",

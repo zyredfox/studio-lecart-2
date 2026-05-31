@@ -49,17 +49,17 @@ export const packages: readonly PackageTier[] = [
 export const servicePillars = [
   {
     key: "vitrine",
-    title: "Sites Vitrines Haute Performance",
+    title: "Sites vitrines haute performance",
     blurb:
-      "Un site rapide et clair pour être trouvé sur Google et mobile, sans abonnement technique obligatoire.",
+      "Site sur mesure, fluide sur mobile, sans abonnement caché — fondations techniques pour vos clients et Google.",
     primaryForfaitId: "pro" as const,
     secondaryForfaitIds: ["essentiel"] as const,
   },
   {
     key: "agents",
-    title: "Réponses Automatiques & IA Utile",
+    title: "Options IA & Automatisation",
     blurb:
-      "Un assistant sur votre site qui répond aux questions fréquentes en s'appuyant sur vos informations.",
+      "Évolution optionnelle après mise en ligne : assistant de réponses ou connexion de vos formulaires.",
     primaryForfaitId: "sur-mesure" as const,
     secondaryForfaitIds: [] as const,
   },
